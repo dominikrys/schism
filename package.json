@@ -17,11 +17,14 @@
     "@typescript-eslint/parser": "^4.29.0",
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
+    "prettier": "^2.3.2",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0"
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "lint": "yarn run eslint ./src --max-warnings=0",
+    "format": "yarn prettier ./src -c"
   }
 }

@@ -1,5 +1,7 @@
 # WebAssembly Compiler in TypeScript
 
+[![Build Status](https://img.shields.io/github/workflow/status/dominikrys/wasm-compiler/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/wasm-compiler/actions)
+
 Compile:
 
 ```bash
@@ -22,8 +24,7 @@ yarn test
 
 - finish tut
 - add describe to emitter tests?
-- incorporate linter, formatter, tests into flow e.g. with lefthook
-- do readme
+- rename repo to suit that it's a language more, tweak readme, tweak build badge
+- complete README
 - go through TODOs
-- add description to repo
 - make repo public

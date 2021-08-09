@@ -1,0 +1,9 @@
+pre-push:
+  piped: true
+  commands:
+    format:
+      run: yarn format
+    lint:
+      run: yarn lint
+    test:
+      run: yarn test
