@@ -1,4 +1,5 @@
-import { unsignedLEB128, encodeString } from "./encoding";
+import { encodeString } from "./encoding";
+import * as leb from "@thi.ng/leb128";
 
 const flatten = (arr: any[]) => [].concat(...arr);
 
@@ -50,7 +51,7 @@ const moduleVersion = [0x01, 0x00, 0x00, 0x00];
 
 // Reference: https://webassembly.github.io/spec/core/binary/conventions.html#vectors
 const encodeVector = (data: any[]) => [
-  ...unsignedLEB128(data.length),
+  ...leb.encodeULEB128(data.length),
   ...flatten(data),
 ];
 
@@ -96,9 +97,9 @@ export const emitter: Emitter = () => {
   // Vectors of functions
   const code = [
     Opcodes.get_local,
-    ...unsignedLEB128(0),
+    ...leb.encodeULEB128(0),
     Opcodes.get_local,
-    ...unsignedLEB128(1),
+    ...leb.encodeULEB128(1),
     Opcodes.f32_add,
   ];
 
