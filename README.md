@@ -24,6 +24,6 @@ yarn test
 - add describe to emitter tests?
 - incorporate linter, formatter, tests into flow e.g. with lefthook
 - do readme
-- go through readmes
+- go through TODOs
 - add description to repo
 - make repo public
