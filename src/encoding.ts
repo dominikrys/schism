@@ -5,7 +5,7 @@ export const numToIeee754Array = (n: number): Uint8Array => {
 };
 
 // Reference: https://webassembly.github.io/spec/core/binary/values.html#binary-name
-export const strToBytes = (str: string): number[] => [
+export const strToBinaryName = (str: string): number[] => [
   str.length,
   ...str.split("").map((s) => s.charCodeAt(0)),
 ];

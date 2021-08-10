@@ -23,6 +23,7 @@ yarn test
 ## TODO
 
 - finish tut
+- go through again
 - add describe to emitter tests?
 - rename repo to suit that it's a language more, tweak readme, tweak build badge
 - complete README

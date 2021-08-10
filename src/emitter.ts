@@ -1,4 +1,4 @@
-import { strToBytes, numToIeee754Array } from "./encoding";
+import { strToBinaryName, numToIeee754Array } from "./encoding";
 import * as leb from "@thi.ng/leb128";
 
 const flatten = (arr: any[]) => [].concat(...arr);
@@ -28,7 +28,9 @@ enum Valtype {
 // Reference: https://webassembly.github.io/spec/core/binary/instructions.html
 enum Opcodes {
   end = 0x0b,
+  call = 0x10,
   get_local = 0x20,
+  f32_const = 0x43,
   f32_add = 0x92,
 }
 
@@ -61,19 +63,47 @@ const createSection = (sectionType: Section, data: any[]) => [
   ...encodeVector(data),
 ];
 
-// Reference: https://webassembly.github.io/spec/core/binary/modules.html#binary-module
-export const emitter: Emitter = () => {
-  // Vectors if parameters and return types
-  const addFunctionType = [
+const codeFromAst = (ast: Program) => {
+  const code: number[] = [];
+
+  const emitExpression = (node: ExpressionNode) => {
+    switch (node.type) {
+      case "numberLiteral":
+        code.push(Opcodes.f32_const);
+        code.push(...numToIeee754Array(node.value));
+        break;
+    }
+  };
+
+  ast.forEach((statement) => {
+    switch (statement.type) {
+      case "printStatement":
+        emitExpression(statement.expression);
+        code.push(Opcodes.call);
+        code.push(...leb.encodeULEB128(0));
+        break;
+    }
+  });
+
+  return code;
+};
+
+// Reference: https://webassembly.github.io/spec/core/binary/modules.html
+export const emitter: Emitter = (ast: Program) => {
+  // Function types contain vectors of parameters and a return type
+  // TODO: maybe rename the two consts below into something better
+  const voidVoidType = [functionType, emptyArray, emptyArray];
+
+  const floatVoidType = [
     functionType,
-    ...encodeVector([Valtype.f32, Valtype.f32]) /* Parameter types */,
-    ...encodeVector([Valtype.f32]) /* Return types */,
+    ...encodeVector([Valtype.f32]) /* Parameter types */,
+    emptyArray /* Return types */,
   ];
 
   // Vector of function types
   const typeSection = createSection(
     Section.type,
-    encodeVector([addFunctionType])
+    encodeVector([voidVoidType, floatVoidType])
   );
 
   // Vector of type indices indicating the type of each function in the code section
@@ -82,30 +112,35 @@ export const emitter: Emitter = () => {
     encodeVector([0x00 /* Index of the type */])
   );
 
+  // Vector of imported functions
+  const printFunctionImport = [
+    ...strToBinaryName("env"),
+    ...strToBinaryName("print"),
+    ExportType.func,
+    0x01 /* Index of the type */,
+  ];
+
+  const importSection = createSection(
+    Section.import,
+    encodeVector([printFunctionImport])
+  );
+
   // Vector of exported functions
   const exportSection = createSection(
     Section.export,
     encodeVector([
       [
-        ...strToBytes("run"),
+        ...strToBinaryName("run"),
         ExportType.func,
-        0x00 /* Index of the function */,
+        0x01 /* Index of the function */,
       ],
     ])
   );
 
   // Vectors of functions
-  const code = [
-    Opcodes.get_local,
-    ...leb.encodeULEB128(0),
-    Opcodes.get_local,
-    ...leb.encodeULEB128(1),
-    Opcodes.f32_add,
-  ];
-
   const functionBody = encodeVector([
     emptyArray /* Locals */,
-    ...code,
+    ...codeFromAst(ast),
     Opcodes.end,
   ]);
 
@@ -115,6 +150,7 @@ export const emitter: Emitter = () => {
     ...magicModuleHeader,
     ...moduleVersion,
     ...typeSection,
+    ...importSection,
     ...funcSection,
     ...exportSection,
     ...codeSection,
