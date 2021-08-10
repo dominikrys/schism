@@ -1,4 +1,4 @@
-import { encodeString } from "./encoding";
+import { strToBytes, numToIeee754Array } from "./encoding";
 import * as leb from "@thi.ng/leb128";
 
 const flatten = (arr: any[]) => [].concat(...arr);
@@ -87,7 +87,7 @@ export const emitter: Emitter = () => {
     Section.export,
     encodeVector([
       [
-        ...encodeString("run"),
+        ...strToBytes("run"),
         ExportType.func,
         0x00 /* Index of the function */,
       ],
