@@ -26,6 +26,6 @@ yarn test
 - go through again
 - add describe to emitter tests?
 - rename repo to suit that it's a language more, tweak readme, tweak build badge (schism)
-- complete README: add tut, say for modern TS
+- complete README: add tut, say for modern TS, mention lefthook
 - go through TODOs
 - make repo public
