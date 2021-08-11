@@ -9,6 +9,8 @@
   "dependencies": {
     "@thi.ng/leb128": "^1.0.64",
     "@types/node": "^16.4.13",
+    "browserify": "^17.0.0",
+    "tsify": "^5.0.4",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
@@ -18,13 +20,13 @@
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
-    "ts-jest": "^27.0.4",
-    "ts-node": "^10.1.0"
+    "ts-jest": "^27.0.4"
   },
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "yarn run eslint ./src --max-warnings=0",
-    "format": "yarn prettier ./src -c"
+    "format": "yarn prettier ./src -c",
+    "bundle": "browserify web/index.ts -p [ tsify ] > web/bundle.js"
   }
 }

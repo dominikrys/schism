@@ -8,7 +8,7 @@ Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/ch
 
 The aim of this project was to learn about compilers and TypeScript.
 
-For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included.
+For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
 ## Build and Run Instructions
 
@@ -18,21 +18,29 @@ Compile:
 yarn build
 ```
 
-Run
-
-```bash
-yarn ts-node .
-```
-
 Run tests:
 
 ```bash
 yarn test
 ```
 
+Compile website TypeScript
+
+```bash
+yarn bundle
+```
+
+Host locally from the `web` directory by running:
+
+```bash
+python3 -m http.server
+```
+
 ## TODO
 
 - finish tut
 - go through again
+- redo front-end
+- deploy website on gh pages + add to readme
 - go through TODOs
 - make repo public
