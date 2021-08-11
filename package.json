@@ -1,9 +1,9 @@
 {
-  "name": "wasm-compiler",
+  "name": "schism",
   "version": "1.0.0",
   "description": "WebAssembly Compiler in TypeScript",
   "main": "src/app.ts",
-  "repository": "git@github.com:dominikrys/wasm-compiler.git",
+  "repository": "git@github.com:dominikrys/schism.git",
   "author": "Dominik Rys",
   "license": "MIT",
   "dependencies": {

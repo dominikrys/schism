@@ -1,6 +1,16 @@
-# WebAssembly Compiler in TypeScript
+# Schism
 
-[![Build Status](https://img.shields.io/github/workflow/status/dominikrys/wasm-compiler/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/wasm-compiler/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/dominikrys/schism/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/wasm-compiler/actions)
+
+Simple Compile-to-WebAssembly Language written in TypeScript.
+
+Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html).
+
+The aim of this project was to learn about compilers and TypeScript.
+
+For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included.
+
+## Build and Run Instructions
 
 Compile:
 
@@ -24,8 +34,5 @@ yarn test
 
 - finish tut
 - go through again
-- add describe to emitter tests?
-- rename repo to suit that it's a language more, tweak readme, tweak build badge (schism)
-- complete README: add tut, say for modern TS, mention lefthook
 - go through TODOs
 - make repo public
