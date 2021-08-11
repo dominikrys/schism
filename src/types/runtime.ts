@@ -3,6 +3,7 @@ interface PrintFunction {
 }
 
 interface Environment {
+  [key: string]: PrintFunction;
   print: PrintFunction;
 }
 
