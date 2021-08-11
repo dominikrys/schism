@@ -28,15 +28,15 @@ export const parse: Parser = (tokens) => {
 
   const parseStatement: ParserStep<StatementNode> = () => {
     // if (currentToken.type === "keyword") { // TOOD: uncomment this
-      switch (currentToken.value) {
-        default: // TODO: remove this
-        case "print":
-          eatToken();
-          return {
-            type: "printStatement",
-            expression: parseExpression(),
-          };
-      }
+    switch (currentToken.value) {
+      default: // TODO: remove this
+      case "print":
+        eatToken();
+        return {
+          type: "printStatement",
+          expression: parseExpression(),
+        };
+    }
     // } // TOOD: uncomment this
   };
 
