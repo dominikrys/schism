@@ -5,7 +5,7 @@ export const runtime: Runtime =
   async (src, { print }) =>
   () => {
     const tokens = tokenize(src);
-    const program = parse(tokens);
+    const ast = parse(tokens);
 
     const evaluateExpression = (expression: ExpressionNode): number => {
       switch (expression.type) {
@@ -24,5 +24,5 @@ export const runtime: Runtime =
       });
     };
 
-    executeStatements(program);
+    executeStatements(ast);
   };

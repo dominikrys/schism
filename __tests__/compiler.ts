@@ -1,5 +1,5 @@
 import { runtime } from "../src/compiler";
-import apps from "./apps";
+import apps from "./__fixtures__/apps";
 
 const executeCode = async (code: string, done: jest.DoneCallback) => {
   const output: any[] = [];
@@ -22,6 +22,6 @@ apps.forEach((app) => {
   test(app.name, async (done) => {
     const result = await executeCode(app.input, done);
     expect(result);
-    expect(result?.output).toEqual(app.output);
+    expect(result?.output).toEqual(app.expectedOutput);
   });
 });

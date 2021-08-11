@@ -1,5 +1,5 @@
 import { runtime } from "../src/interpreter";
-import apps from "./apps";
+import apps from "./__fixtures__/apps";
 
 // Execute the app while recording print statements and pixel writes
 const executeCode = async (code: string) => {
@@ -16,6 +16,6 @@ const executeCode = async (code: string) => {
 apps.forEach((app) => {
   test(app.name, async () => {
     const result = await executeCode(app.input);
-    expect(result.output).toEqual(app.output);
+    expect(result.output).toEqual(app.expectedOutput);
   });
 });
