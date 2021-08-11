@@ -9,7 +9,6 @@ export class TokenizerError extends Error {
 }
 
 // Returns a token if the regex matches at the current index
-// TODO: see how this is called
 const regexMatcher =
   (regex: string, type: TokenType): Matcher =>
   (input, index) => {
@@ -32,7 +31,6 @@ export const tokenize: Tokenizer = (input) => {
   const tokens: Token[] = [];
   let index = 0;
   while (index < input.length) {
-    // TODO: debug this
     const matches = matchers.map((m) => m(input, index)).filter((f) => f);
     if (matches.length > 0 && matches[0]) {
       // Take the highest priority match (at first index)
