@@ -2,7 +2,11 @@
 
 [![Build Status](https://img.shields.io/github/workflow/status/dominikrys/schism/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/wasm-compiler/actions)
 
+[![Website](https://img.shields.io/website?down_color=lightgrey&style=flat-square&down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fdominikrys.com%2Fschism)](https://dominikrys.com/schism/)
+
 Simple Compile-to-WebAssembly Language written in TypeScript.
+
+[**Try the compiler out online!**](http://dominikrys.com/schism/)
 
 Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html).
 
@@ -41,6 +45,5 @@ python3 -m http.server
 - finish tut
 - go through again
 - redo front-end
-- deploy website on gh pages + add to readme
 - go through TODOs
 - make repo public
