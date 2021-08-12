@@ -11,7 +11,8 @@
     "@types/node": "^16.4.13",
     "browserify": "^17.0.0",
     "tsify": "^5.0.4",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "uglify-js": "^3.14.1"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
@@ -27,6 +28,6 @@
     "test": "jest",
     "lint": "yarn run eslint ./src --max-warnings=0",
     "format": "yarn prettier ./src -c",
-    "bundle": "browserify web/index.ts -p [ tsify ] > web/bundle.js"
+    "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js"
   }
 }

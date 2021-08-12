@@ -6,13 +6,11 @@
 
 Simple Compile-to-WebAssembly Language written in TypeScript.
 
-[**Try the compiler out online!**](http://dominikrys.com/schism/)
+[<ins>**Try it out online!**</ins>](http://dominikrys.com/schism/)
 
 Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html).
 
 The aim of this project was to learn about compilers and TypeScript.
-
-For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
 ## Build and Run Instructions
 
@@ -28,17 +26,19 @@ Run tests:
 yarn test
 ```
 
-Compile website TypeScript
+Compile the website TypeScript
 
 ```bash
 yarn bundle
 ```
 
-Host locally from the `web` directory by running:
+Host the website locally from the `docs` directory by running:
 
 ```bash
 python3 -m http.server
 ```
+
+For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
 ## TODO
 
