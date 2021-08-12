@@ -16,12 +16,12 @@ interface BinaryExpresionNode extends ProgramNode {
   operator: Operator;
 }
 
+type ExpressionNode = NumberLiteralNode | BinaryExpresionNode;
+
 interface IdentifierNode extends ProgramNode {
   type: "identifier";
   value: string;
 }
-
-type ExpressionNode = NumberLiteralNode | BinaryExpresionNode;
 
 interface PrintStatementNode extends ProgramNode {
   type: "printStatement";

@@ -2,7 +2,7 @@
 const traverse: Traverse = (nodes, visitor) => {
   nodes = Array.isArray(nodes) ? nodes : [nodes];
   nodes.forEach((node) => {
-    Object.keys(node).forEach((prop: keyof ProgramNode) => {
+    (Object.keys(node) as (keyof ProgramNode)[]).forEach((prop) => {
       const value = node[prop];
       const valueAsArray: string[] = Array.isArray(value) ? value : [value];
       valueAsArray.forEach((childNode: any) => {
