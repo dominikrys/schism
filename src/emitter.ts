@@ -86,14 +86,14 @@ const codeFromAst = (ast: Program) => {
   const code: number[] = [];
 
   const emitExpression = (node: ExpressionNode) =>
-    traverse(node, (node: ExpressionNode) => {
+    traverse(node, (node: ProgramNode) => {
       switch (node.type) {
         case "numberLiteral":
           code.push(Opcode.f32_const);
-          code.push(...numToIeee754Array(node.value));
+          code.push(...numToIeee754Array((node as NumberLiteralNode).value));
           break;
         case "binaryExpression":
-          code.push(binaryOpcode[node.operator]);
+          code.push(binaryOpcode[(node as BinaryExpresionNode).operator]);
           break;
       }
     });
