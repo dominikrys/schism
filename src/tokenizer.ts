@@ -1,4 +1,8 @@
 export const keywords = ["print"];
+export const operators = ["+", "-", "*", "/", "==", "<", ">", "&&"];
+
+const escapeRegex = (text: string) =>
+  text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 
 export class TokenizerError extends Error {
   index: number;
@@ -20,6 +24,8 @@ const matchers = [
   regexMatcher("^[.0-9]+", "number"),
   regexMatcher(`^(${keywords.join("|")})`, "keyword"),
   regexMatcher("^\\s+", "whitespace"),
+  regexMatcher(`^(${operators.map(escapeRegex).join("|")})`, "operator"),
+  regexMatcher("^[()]{1}", "parentheses"),
 ];
 
 const locationForIndex = (input: string, index: number) => ({

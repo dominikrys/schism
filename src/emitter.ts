@@ -1,4 +1,5 @@
 import { strToBinaryName, numToIeee754Array } from "./encoding";
+import traverse from "./traverse";
 import * as leb from "@thi.ng/leb128";
 
 const flatten = (arr: any[]) => [].concat(...arr);
@@ -26,13 +27,31 @@ enum Valtype {
 }
 
 // Reference: https://webassembly.github.io/spec/core/binary/instructions.html
-enum Opcodes {
+enum Opcode {
   end = 0x0b,
   call = 0x10,
   get_local = 0x20,
   f32_const = 0x43,
+  f32_eq = 0x5b,
+  f32_lt = 0x5d,
+  f32_gt = 0x5e,
+  i32_and = 0x71,
   f32_add = 0x92,
+  f32_sub = 0x93,
+  f32_mul = 0x94,
+  f32_div = 0x95,
 }
+
+const binaryOpcode = {
+  "+": Opcode.f32_add,
+  "-": Opcode.f32_sub,
+  "*": Opcode.f32_mul,
+  "/": Opcode.f32_div,
+  "==": Opcode.f32_eq,
+  ">": Opcode.f32_gt,
+  "<": Opcode.f32_lt,
+  "&&": Opcode.i32_and,
+};
 
 // Reference: http://webassembly.github.io/spec/core/binary/modules.html#export-section
 enum ExportType {
@@ -66,20 +85,24 @@ const createSection = (sectionType: Section, data: any[]) => [
 const codeFromAst = (ast: Program) => {
   const code: number[] = [];
 
-  const emitExpression = (node: ExpressionNode) => {
-    switch (node.type) {
-      case "numberLiteral":
-        code.push(Opcodes.f32_const);
-        code.push(...numToIeee754Array(node.value));
-        break;
-    }
-  };
+  const emitExpression = (node: ExpressionNode) =>
+    traverse(node, (node: ExpressionNode) => {
+      switch (node.type) {
+        case "numberLiteral":
+          code.push(Opcode.f32_const);
+          code.push(...numToIeee754Array(node.value));
+          break;
+        case "binaryExpression":
+          code.push(binaryOpcode[node.operator]);
+          break;
+      }
+    });
 
   ast.forEach((statement) => {
     switch (statement.type) {
       case "printStatement":
         emitExpression(statement.expression);
-        code.push(Opcodes.call);
+        code.push(Opcode.call);
         code.push(...leb.encodeULEB128(0));
         break;
     }
@@ -141,7 +164,7 @@ export const emitter: Emitter = (ast: Program) => {
   const functionBody = encodeVector([
     emptyArray /* Locals */,
     ...codeFromAst(ast),
-    Opcodes.end,
+    Opcode.end,
   ]);
 
   const codeSection = createSection(Section.code, encodeVector([functionBody]));

@@ -1,5 +1,10 @@
 // TODO: can this be made into an enum?
-type TokenType = "number" | "keyword" | "whitespace";
+type TokenType =
+  | "number"
+  | "keyword"
+  | "whitespace"
+  | "parentheses"
+  | "operator";
 
 interface Token {
   type: TokenType;

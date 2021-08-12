@@ -7,13 +7,21 @@ interface NumberLiteralNode extends ProgramNode {
   value: number;
 }
 
+type Operator = "+" | "-" | "/" | "*" | "==" | ">" | "<" | "&&";
+
+interface BinaryExpresionNode extends ProgramNode {
+  type: "binaryExpression";
+  left: ExpressionNode;
+  right: ExpressionNode;
+  operator: Operator;
+}
+
 interface IdentifierNode extends ProgramNode {
   type: "identifier";
   value: string;
 }
 
-// TODO: add more expression types
-type ExpressionNode = NumberLiteralNode;
+type ExpressionNode = NumberLiteralNode | BinaryExpresionNode;
 
 interface PrintStatementNode extends ProgramNode {
   type: "printStatement";

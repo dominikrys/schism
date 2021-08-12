@@ -6,6 +6,12 @@ const apps = [
     input: "print 8 print 24",
     expectedOutput: [8, 24],
   },
+  { name: "Binary expressions", input: "print(2+ 4)", output: [6] },
+  {
+    name: "Nested binary expressions",
+    input: "print ((6-4)+10)",
+    output: [12],
+  },
 ];
 
 const executeCode = async (
