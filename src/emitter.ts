@@ -21,7 +21,7 @@ enum Section {
 }
 
 // Reference: https://webassembly.github.io/spec/core/binary/types.html
-enum Valtype {
+enum ValType {
   i32 = 0x7f,
   f32 = 0x7d,
 }
@@ -31,6 +31,7 @@ enum Opcode {
   end = 0x0b,
   call = 0x10,
   get_local = 0x20,
+  set_local = 0x21,
   f32_const = 0x43,
   f32_eq = 0x5b,
   f32_lt = 0x5d,
@@ -76,6 +77,12 @@ const encodeVector = (data: any[]) => [
   ...flatten(data),
 ];
 
+// Reference: https://webassembly.github.io/spec/core/binary/modules.html#code-section
+const encodeLocal = (count: number, type: ValType) => [
+  leb.encodeULEB128(count),
+  type,
+];
+
 // Reference: https://webassembly.github.io/spec/core/binary/modules.html#sections
 const createSection = (sectionType: Section, data: any[]) => [
   sectionType,
@@ -85,12 +92,30 @@ const createSection = (sectionType: Section, data: any[]) => [
 const codeFromAst = (ast: Program) => {
   const code: number[] = [];
 
+  const symbols = new Map<string, number>();
+
+  const localIndexForSymbol = (name: string): number => {
+    if (!symbols.has(name)) {
+      symbols.set(name, symbols.size);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return symbols.get(name)!;
+  };
+
   const emitExpression = (node: ExpressionNode) =>
     traverse(node, (node: ProgramNode) => {
       switch (node.type) {
         case "numberLiteral":
           code.push(Opcode.f32_const);
           code.push(...numToIeee754Array((node as NumberLiteralNode).value));
+          break;
+        case "identifier":
+          code.push(Opcode.get_local);
+          code.push(
+            ...leb.encodeULEB128(
+              localIndexForSymbol((node as IdentifierNode).value)
+            )
+          );
           break;
         case "binaryExpression":
           code.push(binaryOpcode[(node as BinaryExpresionNode).operator]);
@@ -105,10 +130,15 @@ const codeFromAst = (ast: Program) => {
         code.push(Opcode.call);
         code.push(...leb.encodeULEB128(0));
         break;
+      case "variableDeclaration":
+        emitExpression(statement.initializer);
+        code.push(Opcode.set_local);
+        code.push(...leb.encodeULEB128(localIndexForSymbol(statement.name)));
+        break;
     }
   });
 
-  return code;
+  return { code, localCount: symbols.size };
 };
 
 // Reference: https://webassembly.github.io/spec/core/binary/modules.html
@@ -119,7 +149,7 @@ export const emitter: Emitter = (ast: Program) => {
 
   const floatVoidType = [
     functionType,
-    ...encodeVector([Valtype.f32]) /* Parameter types */,
+    ...encodeVector([ValType.f32]) /* Parameter types */,
     emptyArray /* Return types */,
   ];
 
@@ -161,9 +191,12 @@ export const emitter: Emitter = (ast: Program) => {
   );
 
   // Vectors of functions
+  const { code, localCount } = codeFromAst(ast);
+  const locals = localCount > 0 ? [encodeLocal(localCount, ValType.f32)] : [];
+
   const functionBody = encodeVector([
-    emptyArray /* Locals */,
-    ...codeFromAst(ast),
+    ...encodeVector(locals),
+    ...code,
     Opcode.end,
   ]);
 

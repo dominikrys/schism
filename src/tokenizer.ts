@@ -1,4 +1,4 @@
-export const keywords = ["print"];
+export const keywords = ["print, var"];
 export const operators = ["+", "-", "*", "/", "==", "<", ">", "&&"];
 
 const escapeRegex = (text: string) =>
@@ -25,6 +25,8 @@ const matchers = [
   regexMatcher(`^(${keywords.join("|")})`, "keyword"),
   regexMatcher("^\\s+", "whitespace"),
   regexMatcher(`^(${operators.map(escapeRegex).join("|")})`, "operator"),
+  regexMatcher(`^[a-z]`, "identifier"),
+  regexMatcher(`^=`, "assignment"),
   regexMatcher("^[()]{1}", "parentheses"),
 ];
 

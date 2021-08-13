@@ -16,20 +16,25 @@ interface BinaryExpresionNode extends ProgramNode {
   operator: Operator;
 }
 
-type ExpressionNode = NumberLiteralNode | BinaryExpresionNode;
-
 interface IdentifierNode extends ProgramNode {
   type: "identifier";
   value: string;
 }
+
+type ExpressionNode = NumberLiteralNode | BinaryExpresionNode | IdentifierNode;
 
 interface PrintStatementNode extends ProgramNode {
   type: "printStatement";
   expression: ExpressionNode;
 }
 
-// TODO: add more statement types
-type StatementNode = PrintStatementNode;
+interface VariableDeclarationNode extends ProgramNode {
+  type: "variableDeclaration";
+  name: string;
+  initializer: ExpressionNode;
+}
+
+type StatementNode = PrintStatementNode | VariableDeclarationNode;
 
 type Program = StatementNode[];
 

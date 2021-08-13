@@ -35,6 +35,10 @@ export const parse: Parser = (tokens) => {
         };
         eatToken();
         return node;
+      case "identifier":
+        node = { type: "identifier", value: currentToken.value };
+        eatToken();
+        return node;
       case "parentheses": {
         eatToken("(");
         const left = parseExpression();
@@ -57,23 +61,53 @@ export const parse: Parser = (tokens) => {
     }
   };
 
+  const parsePrintStatement: ParserStep<PrintStatementNode> = () => {
+    eatToken("print");
+    return {
+      type: "printStatement",
+      expression: parseExpression(),
+    };
+  };
+
+  const parseVariableDeclarationStatement: ParserStep<VariableDeclarationNode> =
+    () => {
+      eatToken("var");
+      const name = currentToken.value;
+      eatToken();
+      eatToken("=");
+      return {
+        type: "variableDeclaration",
+        name,
+        initializer: parseExpression(),
+      };
+    };
+
   const parseStatement: ParserStep<StatementNode> = () => {
-    // if (currentToken.type === "keyword") { // TOOD: uncomment this
-    switch (currentToken.value) {
-      default: // TODO: remove this
-      case "print":
-        eatToken();
-        return {
-          type: "printStatement",
-          expression: parseExpression(),
-        };
+    if (currentToken.type === "keyword") {
+      switch (currentToken.value) {
+        case "print":
+          return parsePrintStatement();
+        case "var":
+          return parseVariableDeclarationStatement();
+        default:
+          throw new ParserError(
+            `Unknown keyword ${currentToken.value}`,
+            currentToken
+          );
+      }
+    } else {
+      return {} as StatementNode;
+      // TODO: think of better solution
     }
-    // } // TOOD: uncomment this
   };
 
   const nodes: StatementNode[] = [];
   while (currentToken) {
-    nodes.push(parseStatement());
+    const node = parseStatement();
+
+    if (Object.keys(node).length !== 0) {
+      nodes.push(node);
+    }
   }
 
   return nodes;

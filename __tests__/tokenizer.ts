@@ -21,9 +21,9 @@ it("Consumes whitespace", () => {
 
 it("Throws error on unrecognized token", () => {
   expect(() => {
-    const input = " print foo   print";
+    const input = " print $   print";
     tokenize(input);
-  }).toThrowError("Unexpected token f");
+  }).toThrowError("Unexpected token $");
 });
 
 it("Tokenizes multiple mixed tokens", () => {

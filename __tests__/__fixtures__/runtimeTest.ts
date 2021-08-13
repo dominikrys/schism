@@ -18,6 +18,16 @@ const apps: App[] = [
     input: "print ((6-4)+10)",
     expectedOutput: [12],
   },
+  {
+    name: "variable declaration",
+    input: "var f = 22 print f",
+    expectedOutput: [22],
+  },
+  {
+    name: "floating point variable declaration",
+    input: "var f = 22.5 print f",
+    expectedOutput: [22.5],
+  },
 ];
 
 const executeCode = async (

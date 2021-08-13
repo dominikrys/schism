@@ -13,7 +13,12 @@ The aim of this project was to learn about compilers and TypeScript.
 
 ## Build and Run Instructions
 
-Compile:
+Pre-requisites:
+
+- [Node.js](https://nodejs.org/en/)
+- [yarn](https://classic.yarnpkg.com/en/docs/install/)
+
+To build:
 
 ```bash
 yarn build
@@ -25,13 +30,13 @@ Run tests:
 yarn test
 ```
 
-Compile the website TypeScript
+Compile the website's TypeScript:
 
 ```bash
 yarn bundle
 ```
 
-Host the website locally from the `docs` directory by running:
+Host the website locally from the `docs` directory:
 
 ```bash
 python3 -m http.server

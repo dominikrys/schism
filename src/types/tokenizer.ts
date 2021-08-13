@@ -4,7 +4,9 @@ type TokenType =
   | "keyword"
   | "whitespace"
   | "parentheses"
-  | "operator";
+  | "operator"
+  | "identifier"
+  | "assignment";
 
 interface Token {
   type: TokenType;
