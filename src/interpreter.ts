@@ -57,6 +57,15 @@ export const runtime: Runtime =
               statement.name,
               evaluateExpression(statement.initializer)
             );
+            break;
+          case "variableAssignment":
+            symbols.set(statement.name, evaluateExpression(statement.value));
+            break;
+          case "whileStatement":
+            while (evaluateExpression(statement.expression)) {
+              executeStatements(statement.statements);
+            }
+            break;
         }
       });
     };

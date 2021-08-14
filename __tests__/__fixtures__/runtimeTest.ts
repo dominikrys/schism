@@ -19,14 +19,29 @@ const apps: App[] = [
     expectedOutput: [12],
   },
   {
-    name: "variable declaration",
+    name: "Variable declaration",
     input: "var f = 22 print f",
     expectedOutput: [22],
   },
   {
-    name: "floating point variable declaration",
+    name: "Floating point variable declaration",
     input: "var f = 22.5 print f",
     expectedOutput: [22.5],
+  },
+  {
+    name: "Variable assignment",
+    input: "var f = 22 f = (f+1) print f",
+    expectedOutput: [23],
+  },
+  {
+    name: "Floating point variable assignment",
+    input: "var f = 22.5 f = (f+1.5) print f",
+    expectedOutput: [24],
+  },
+  {
+    name: "While statements",
+    input: "var f = 0 while (f < 5) f = (f + 1) print f endwhile",
+    expectedOutput: [1, 2, 3, 4, 5],
   },
 ];
 

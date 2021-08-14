@@ -26,13 +26,23 @@ enum ValType {
   f32 = 0x7d,
 }
 
+// Reference: https://webassembly.github.io/spec/core/syntax/instructions.html#syntax-BlockType
+enum BlockType {
+  void = 0x40,
+}
+
 // Reference: https://webassembly.github.io/spec/core/binary/instructions.html
 enum Opcode {
+  block = 0x02,
+  loop = 0x03,
+  br = 0x0c,
+  br_if = 0x0d,
   end = 0x0b,
   call = 0x10,
   get_local = 0x20,
   set_local = 0x21,
   f32_const = 0x43,
+  i32_eqz = 0x45,
   f32_eq = 0x5b,
   f32_lt = 0x5d,
   f32_gt = 0x5e,
@@ -123,20 +133,58 @@ const codeFromAst = (ast: Program) => {
       }
     });
 
-  ast.forEach((statement) => {
-    switch (statement.type) {
-      case "printStatement":
-        emitExpression(statement.expression);
-        code.push(Opcode.call);
-        code.push(...leb.encodeULEB128(0));
-        break;
-      case "variableDeclaration":
-        emitExpression(statement.initializer);
-        code.push(Opcode.set_local);
-        code.push(...leb.encodeULEB128(localIndexForSymbol(statement.name)));
-        break;
-    }
-  });
+  const emitStatements = (statements: StatementNode[]) =>
+    statements.forEach((statement) => {
+      switch (statement.type) {
+        case "printStatement":
+          emitExpression(statement.expression);
+          code.push(Opcode.call);
+          code.push(...leb.encodeULEB128(0));
+          break;
+        case "variableDeclaration":
+          emitExpression(statement.initializer);
+          code.push(Opcode.set_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol(statement.name)));
+          break;
+        case "variableAssignment":
+          emitExpression(statement.value);
+          code.push(Opcode.set_local);
+          code.push(...leb.encodeSLEB128(localIndexForSymbol(statement.name)));
+          break;
+        case "whileStatement":
+          // Outer block
+          code.push(Opcode.block);
+          code.push(BlockType.void);
+
+          // Inner loop
+          code.push(Opcode.loop);
+          code.push(BlockType.void);
+
+          // Compute the while expression
+          emitExpression(statement.expression);
+          code.push(Opcode.i32_eqz);
+
+          // br_if $label0
+          code.push(Opcode.br_if);
+          code.push(...leb.encodeSLEB128(1));
+
+          // Nested logic
+          emitStatements(statement.statements);
+
+          // br $label1
+          code.push(Opcode.br);
+          code.push(...leb.encodeSLEB128(0));
+
+          // End loop
+          code.push(Opcode.end);
+
+          // End block
+          code.push(Opcode.end);
+          break;
+      }
+    });
+
+  emitStatements(ast);
 
   return { code, localCount: symbols.size };
 };

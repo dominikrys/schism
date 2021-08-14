@@ -3,7 +3,7 @@ interface ProgramNode {
 }
 
 interface NumberLiteralNode extends ProgramNode {
-  type: "numberLiteral"; // // TODO: can these types be made into an enum?
+  type: "numberLiteral"; // // TODO: can these types be made into an enum? Also all other strings
   value: number;
 }
 
@@ -34,7 +34,23 @@ interface VariableDeclarationNode extends ProgramNode {
   initializer: ExpressionNode;
 }
 
-type StatementNode = PrintStatementNode | VariableDeclarationNode;
+interface VariableAssignmentNode extends ProgramNode {
+  type: "variableAssignment";
+  name: string;
+  value: ExpressionNode;
+}
+
+interface WhileStatementNode extends ProgramNode {
+  type: "whileStatement";
+  expression: ExpressionNode;
+  statements: StatementNode[];
+}
+
+type StatementNode =
+  | PrintStatementNode
+  | VariableDeclarationNode
+  | VariableAssignmentNode
+  | WhileStatementNode;
 
 type Program = StatementNode[];
 
