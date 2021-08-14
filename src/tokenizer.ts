@@ -1,4 +1,4 @@
-export const keywords = ["print, var"];
+export const keywords = ["print", "var"];
 export const operators = ["+", "-", "*", "/", "==", "<", ">", "&&"];
 
 const escapeRegex = (text: string) =>
