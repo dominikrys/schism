@@ -2,6 +2,7 @@ interface App {
   name: string;
   input: string;
   expectedOutput: number[];
+  expectedWrittenPixels?: [number, number][];
 }
 
 const apps: App[] = [
@@ -43,6 +44,12 @@ const apps: App[] = [
     input: "var f = 0 while (f < 5) f = (f + 1) print f endwhile",
     expectedOutput: [1, 2, 3, 4, 5],
   },
+  {
+    name: "setpixel statements",
+    input: "setpixel 1 2 3",
+    expectedOutput: [],
+    expectedWrittenPixels: [[201, 3]],
+  },
 ];
 
 const executeCode = async (
@@ -51,15 +58,25 @@ const executeCode = async (
   done: jest.DoneCallback
 ) => {
   const output: any[] = [];
+  const display = new Uint8Array(10000);
+  const writtenPixels: any[] = [];
 
   try {
     const tick = await runtime(code, {
       print: (d: any) => output.push(d),
+      display,
     });
     tick();
 
+    // Find any pixels that have been written to
+    display.forEach((value, index) => {
+      if (value !== 0) {
+        writtenPixels.push([index, value]);
+      }
+    });
+
     done();
-    return { output };
+    return { output, writtenPixels };
   } catch (e) {
     console.error(e);
     done.fail();
@@ -72,6 +89,9 @@ export default (runtime: Runtime): void => {
       const result = await executeCode(app.input, runtime, done);
       expect(result);
       expect(result?.output).toEqual(app.expectedOutput);
+      if (app.expectedWrittenPixels) {
+        expect(result?.writtenPixels).toEqual(app.expectedWrittenPixels);
+      }
     });
   });
 };

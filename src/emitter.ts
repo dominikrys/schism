@@ -41,6 +41,7 @@ enum Opcode {
   call = 0x10,
   get_local = 0x20,
   set_local = 0x21,
+  i32_store_8 = 0x3a,
   f32_const = 0x43,
   i32_eqz = 0x45,
   f32_eq = 0x5b,
@@ -51,6 +52,7 @@ enum Opcode {
   f32_sub = 0x93,
   f32_mul = 0x94,
   f32_div = 0x95,
+  i32_trunc_f32_s = 0xa8,
 }
 
 const binaryOpcode = {
@@ -89,7 +91,7 @@ const encodeVector = (data: any[]) => [
 
 // Reference: https://webassembly.github.io/spec/core/binary/modules.html#code-section
 const encodeLocal = (count: number, type: ValType) => [
-  leb.encodeULEB128(count),
+  ...leb.encodeULEB128(count),
   type,
 ];
 
@@ -181,6 +183,44 @@ const codeFromAst = (ast: Program) => {
           // End block
           code.push(Opcode.end);
           break;
+        case "setpixelStatement":
+          // Compute and cache the parameters
+          emitExpression(statement.x);
+          code.push(Opcode.set_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("x")));
+
+          emitExpression(statement.y);
+          code.push(Opcode.set_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("y")));
+
+          emitExpression(statement.color);
+          code.push(Opcode.set_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("color")));
+
+          // Compute the offset (x * 100) + y
+          // TODO: work out how the stack machine works and where the 100 comes from
+          code.push(Opcode.get_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("y")));
+          code.push(Opcode.f32_const);
+          code.push(...numToIeee754Array(100));
+          code.push(Opcode.f32_mul);
+
+          code.push(Opcode.get_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("x")));
+          code.push(Opcode.f32_add);
+
+          // Convert to an integer
+          code.push(Opcode.i32_trunc_f32_s);
+
+          // Fetch the color
+          code.push(Opcode.get_local);
+          code.push(...leb.encodeULEB128(localIndexForSymbol("color")));
+          code.push(Opcode.i32_trunc_f32_s);
+
+          // Write to memory
+          code.push(Opcode.i32_store_8);
+          code.push(...[0x00, 0x00]); // align and offset
+          break;
       }
     });
 
@@ -221,9 +261,18 @@ export const emitter: Emitter = (ast: Program) => {
     0x01 /* Index of the type */,
   ];
 
+  const memoryImport = [
+    ...strToBinaryName("env"),
+    ...strToBinaryName("memory"),
+    ExportType.mem,
+    // Limits: https://webassembly.github.io/spec/core/binary/types.html#limits
+    0x00,
+    0x01,
+  ];
+
   const importSection = createSection(
     Section.import,
-    encodeVector([printFunctionImport])
+    encodeVector([printFunctionImport, memoryImport])
   );
 
   // Vector of exported functions

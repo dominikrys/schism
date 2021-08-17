@@ -46,9 +46,10 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 
 ## TODO
 
-- finish tut
-- go through again
+- go through again + front end code
+- implement additional operators
 - add info to readme on the language and syntax etc
 - redo front-end. Add GitHub corner
+- add images to README
 - go through TODOs
 - make repo public

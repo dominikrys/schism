@@ -46,11 +46,19 @@ interface WhileStatementNode extends ProgramNode {
   statements: StatementNode[];
 }
 
+interface SetPixelStatementNode extends ProgramNode {
+  type: "setpixelStatement";
+  x: ExpressionNode;
+  y: ExpressionNode;
+  color: ExpressionNode;
+}
+
 type StatementNode =
   | PrintStatementNode
   | VariableDeclarationNode
   | VariableAssignmentNode
-  | WhileStatementNode;
+  | WhileStatementNode
+  | SetPixelStatementNode;
 
 type Program = StatementNode[];
 

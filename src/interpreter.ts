@@ -24,7 +24,7 @@ const applyOperator = (operator: string, left: number, right: number) => {
 };
 
 export const runtime: Runtime =
-  async (src, { print }) =>
+  async (src, { print, display }) =>
   () => {
     const tokens = tokenize(src);
     const ast = parse(tokens);
@@ -66,6 +66,13 @@ export const runtime: Runtime =
               executeStatements(statement.statements);
             }
             break;
+          case "setpixelStatement": {
+            const x = evaluateExpression(statement.x);
+            const y = evaluateExpression(statement.y);
+            const color = evaluateExpression(statement.color);
+            display[y * 100 + x] = color;
+            break;
+          }
         }
       });
     };

@@ -3,8 +3,10 @@ interface PrintFunction {
 }
 
 interface Environment {
+  // TODO: fix this
   [key: string]: PrintFunction;
   print: PrintFunction;
+  display: Uint8Array;
 }
 
 interface TickFunction {
