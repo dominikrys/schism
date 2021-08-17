@@ -24,7 +24,7 @@ const applyOperator = (operator: string, left: number, right: number) => {
 };
 
 export const runtime: Runtime =
-  async (src, { print, display }) =>
+  async (src, { print, displayMemory }) =>
   () => {
     const tokens = tokenize(src);
     const ast = parse(tokens);
@@ -70,7 +70,8 @@ export const runtime: Runtime =
             const x = evaluateExpression(statement.x);
             const y = evaluateExpression(statement.y);
             const color = evaluateExpression(statement.color);
-            display[y * 100 + x] = color;
+            const displayBuffer = new Uint8Array(displayMemory.buffer);
+            displayBuffer[y * 100 + x] = color;
             break;
           }
         }

@@ -103,17 +103,18 @@ const run = async (runtime: Runtime) => {
   let tickFunction: TickFunction;
 
   try {
-    const display = new Uint8Array(10000);
+    const displayMemory = new WebAssembly.Memory({ initial: 1 });
     tickFunction = await runtime(editor.getValue(), {
       print: logMessage,
-      display,
+      displayMemory,
     });
 
     outputArea.value = "";
     logMessage(`Executing ... `);
 
     tickFunction();
-    updateCanvas(display);
+    const displayBuffer = new Uint8Array(displayMemory.buffer);
+    updateCanvas(displayBuffer);
 
     interpretButton?.classList.remove("active");
     compileButton?.classList.remove("active");

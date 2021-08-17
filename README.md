@@ -46,10 +46,11 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 
 ## TODO
 
+- fix current compiler error
+- go through TODOs in code
 - go through again + front end code
 - implement additional operators
 - add info to readme on the language and syntax etc
 - redo front-end. Add GitHub corner
 - add images to README
-- go through TODOs
 - make repo public

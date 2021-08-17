@@ -11,12 +11,14 @@ export const compile: Compiler = (src) => {
 
 export const runtime: Runtime = async (src, env) => {
   const wasm = compile(src);
-  const memory = new WebAssembly.Memory({ initial: 1 });
+  const displayMemory = new WebAssembly.Memory({ initial: 1 });
   const result: any = await WebAssembly.instantiate(wasm, {
-    env: { ...env, memory },
+    env: { ...env, displayMemory },
   });
   return () => {
     result.instance.exports.run();
-    env.display.set(new Uint8Array(memory.buffer, 0, 10000));
+    // TODO: can these two lines below me removed?
+    const displayBuffer = new Uint8Array(env.displayMemory.buffer);
+    displayBuffer.set(new Uint8Array(displayMemory.buffer, 0, 10000));
   };
 };

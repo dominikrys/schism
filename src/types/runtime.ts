@@ -2,11 +2,10 @@ interface PrintFunction {
   (output: string | number): void;
 }
 
+// TODO: change to "ImportObject"
 interface Environment {
-  // TODO: fix this
-  [key: string]: PrintFunction;
   print: PrintFunction;
-  display: Uint8Array;
+  displayMemory: WebAssembly.Memory;
 }
 
 interface TickFunction {

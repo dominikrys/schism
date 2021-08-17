@@ -58,18 +58,19 @@ const executeCode = async (
   done: jest.DoneCallback
 ) => {
   const output: any[] = [];
-  const display = new Uint8Array(10000);
+  const displayMemory = new WebAssembly.Memory({ initial: 1 });
   const writtenPixels: any[] = [];
 
   try {
     const tick = await runtime(code, {
       print: (d: any) => output.push(d),
-      display,
+      displayMemory,
     });
     tick();
 
     // Find any pixels that have been written to
-    display.forEach((value, index) => {
+    const displayBuffer = new Uint8Array(displayMemory.buffer);
+    displayBuffer.forEach((value, index) => {
       if (value !== 0) {
         writtenPixels.push([index, value]);
       }
