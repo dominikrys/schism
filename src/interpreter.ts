@@ -1,5 +1,6 @@
 import { tokenize } from "./tokenizer";
 import { parse } from "./parser";
+import { Constants } from "./constants";
 
 const applyOperator = (operator: string, left: number, right: number) => {
   switch (operator) {
@@ -71,7 +72,7 @@ export const runtime: Runtime =
             const y = evaluateExpression(statement.y);
             const color = evaluateExpression(statement.color);
             const displayBuffer = new Uint8Array(displayMemory.buffer);
-            displayBuffer[y * 100 + x] = color;
+            displayBuffer[y * Constants.CANVAS_DIM + x] = color;
             break;
           }
         }

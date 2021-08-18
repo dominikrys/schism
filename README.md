@@ -52,7 +52,6 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 
 ## TODO
 
-- go through TODOs in code
 - go through again + front end code
 - implement additional operators
 - check done extensions
@@ -62,5 +61,6 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
   - add name of compiler
   - add styling
   - add description - say when "run" is clicked, code is tokenised and parsed into an AST. Interpreter uses JS to execute the AST, and compiler uses AST to compile into WASM
+  - mention limits of screen being 0-99
 - add images to README
 - make repo public

@@ -3,6 +3,7 @@ declare const CodeMirror: any;
 import { runtime as interpreterRuntime } from "../src/interpreter";
 import { runtime as compilerRuntime } from "../src/compiler";
 import { keywords } from "../src/tokenizer";
+import { Constants } from "../src/constants";
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
 // quick and dirty image data scaling
@@ -78,15 +79,18 @@ const markError = (token: Token) => {
   }
 };
 
-const updateCanvas = (display: Uint8Array) => {
+const updateCanvas = (displayBuffer: Uint8Array) => {
   const context = canvas.getContext("2d");
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const imgData = context!.createImageData(100, 100);
-  for (let i = 0; i < 100 * 100; i++) {
-    imgData.data[i * 4] = display[i];
-    imgData.data[i * 4 + 1] = display[i];
-    imgData.data[i * 4 + 2] = display[i];
-    imgData.data[i * 4 + 3] = 255;
+  const imgData = context!.createImageData(
+    Constants.CANVAS_DIM,
+    Constants.CANVAS_DIM
+  );
+  for (let i = 0; i < Constants.CANVAS_DIM * Constants.CANVAS_DIM; i++) {
+    imgData.data[i * 4] = displayBuffer[i]; // Red
+    imgData.data[i * 4 + 1] = displayBuffer[i]; // Green
+    imgData.data[i * 4 + 2] = displayBuffer[i]; // Blue
+    imgData.data[i * 4 + 3] = 255; // Alpha
   }
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const data = scaleImageData(imgData, 3, context!);

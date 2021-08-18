@@ -1,5 +1,6 @@
 import { strToBinaryName, numToIeee754Array } from "./encoding";
 import traverse from "./traverse";
+import { Constants } from "./constants";
 import * as leb from "@thi.ng/leb128";
 
 const flatten = (arr: any[]) => [].concat(...arr);
@@ -197,12 +198,11 @@ const codeFromAst = (ast: Program) => {
           code.push(Opcode.set_local);
           code.push(...leb.encodeULEB128(localIndexForSymbol("color")));
 
-          // Compute the offset (x * 100) + y
-          // TODO: work out how the stack machine works and where the 100 comes from
+          // Compute the offset (y * 100) + x
           code.push(Opcode.get_local);
           code.push(...leb.encodeULEB128(localIndexForSymbol("y")));
           code.push(Opcode.f32_const);
-          code.push(...numToIeee754Array(100));
+          code.push(...numToIeee754Array(Constants.CANVAS_DIM));
           code.push(Opcode.f32_mul);
 
           code.push(Opcode.get_local);
@@ -219,7 +219,7 @@ const codeFromAst = (ast: Program) => {
 
           // Write to memory
           code.push(Opcode.i32_store_8);
-          code.push(...[0x00, 0x00]); // align and offset
+          code.push(...[0x00, 0x00]); // Memory align and offset attributes
           break;
       }
     });
