@@ -12,7 +12,7 @@ export const compile: Compiler = (src) => {
 export const runtime: Runtime = async (src, { print, displayMemory }) => {
   const wasm = compile(src);
   const importObject = {
-    env: { print, 'memory': displayMemory },
+    env: { print, memory: displayMemory },
   };
   const result: any = await WebAssembly.instantiate(wasm, importObject);
   return () => {

@@ -56,6 +56,10 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 - go through again + front end code
 - implement additional operators
 - add info to readme on the language and syntax etc
-- redo front-end. Add GitHub corner. say interpreter is all TS and compiler it all WASM
+- redo front-end
+  - Add GitHub corner
+  - add name of compiler
+  - add styling
+  - add description - say when "run" is clicked, code is tokenised and parsed into an AST. Interpreter uses JS to execute the AST, and compiler uses AST to compile into WASM
 - add images to README
 - make repo public

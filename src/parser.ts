@@ -113,9 +113,9 @@ export const parse: Parser = (tokens) => {
       type: "setpixelStatement",
       x: parseExpression(),
       y: parseExpression(),
-      color: parseExpression()
+      color: parseExpression(),
     };
-  }
+  };
 
   const parseStatement: ParserStep<StatementNode> = () => {
     if (currentToken.type === "keyword") {
