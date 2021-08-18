@@ -30,10 +30,16 @@ Run tests:
 yarn test
 ```
 
-Compile the website's TypeScript:
+Compile the website's TypeScript for production:
 
 ```bash
 yarn bundle
+```
+
+Compile the website's TypeScript for debugging:
+
+```bash
+yarn bundle-debug
 ```
 
 Host the website locally from the `docs` directory:

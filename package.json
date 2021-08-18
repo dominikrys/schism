@@ -28,6 +28,7 @@
     "test": "jest",
     "lint": "yarn run eslint ./src ./__tests__ --max-warnings=0",
     "format": "yarn prettier ./src ./__tests__ -c",
-    "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js"
+    "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js",
+    "bundle-debug": "rsync -a --delete docs/ docs-debug/ && browserify docs-debug/index.ts --debug -p [ tsify] > docs-debug/bundle.js"
   }
 }
