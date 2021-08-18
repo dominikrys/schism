@@ -3,7 +3,7 @@ interface ProgramNode {
 }
 
 interface NumberLiteralNode extends ProgramNode {
-  type: "numberLiteral"; // // TODO: can these types be made into an enum? Also all other strings
+  type: "numberLiteral";
   value: number;
 }
 

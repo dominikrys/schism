@@ -1,4 +1,3 @@
-// TODO: can this be made into an enum?
 type TokenType =
   | "number"
   | "keyword"

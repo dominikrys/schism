@@ -2,8 +2,7 @@ interface PrintFunction {
   (output: string | number): void;
 }
 
-// TODO: change to "ImportObject"
-interface Environment {
+interface ImportObject {
   print: PrintFunction;
   displayMemory: WebAssembly.Memory;
 }
@@ -13,5 +12,5 @@ interface TickFunction {
 }
 
 interface Runtime {
-  (src: string, environment: Environment): Promise<TickFunction>;
+  (src: string, importObject: ImportObject): Promise<TickFunction>;
 }
