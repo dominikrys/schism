@@ -7,7 +7,7 @@ Simple Compile-to-WebAssembly Language written in TypeScript.
 
 [<ins>**Try it out online!**</ins>](http://dominikrys.com/schism/)
 
-Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html).
+Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html). The project has been written using up-to-date versions of TypeScript and Node.js, unlike those used in the before mentioned blog post.
 
 The aim of this project was to learn about compilers and TypeScript.
 
@@ -52,11 +52,10 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 
 ## TODO
 
-- fix current compiler error
 - go through TODOs in code
 - go through again + front end code
 - implement additional operators
 - add info to readme on the language and syntax etc
-- redo front-end. Add GitHub corner
+- redo front-end. Add GitHub corner. say interpreter is all TS and compiler it all WASM
 - add images to README
 - make repo public

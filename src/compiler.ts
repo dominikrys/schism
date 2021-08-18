@@ -9,16 +9,13 @@ export const compile: Compiler = (src) => {
   return wasm;
 };
 
-export const runtime: Runtime = async (src, env) => {
+export const runtime: Runtime = async (src, { print, displayMemory }) => {
   const wasm = compile(src);
-  const displayMemory = new WebAssembly.Memory({ initial: 1 });
-  const result: any = await WebAssembly.instantiate(wasm, {
-    env: { ...env, displayMemory },
-  });
+  const importObject = {
+    env: { print, 'memory': displayMemory },
+  };
+  const result: any = await WebAssembly.instantiate(wasm, importObject);
   return () => {
     result.instance.exports.run();
-    // TODO: can these two lines below me removed?
-    const displayBuffer = new Uint8Array(env.displayMemory.buffer);
-    displayBuffer.set(new Uint8Array(displayMemory.buffer, 0, 10000));
   };
 };
