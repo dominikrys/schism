@@ -132,18 +132,16 @@ export const parse: Parser = (tokens) => {
     } else if (currentToken.type === "identifier") {
       return parseVariableAssignment();
     } else {
-      return {} as StatementNode;
-      // TODO: think of better solution
+      throw new ParserError(
+        `Unexpected token type ${currentToken.value}`,
+        currentToken
+      );
     }
   };
 
   const nodes: StatementNode[] = [];
   while (currentToken) {
-    const node = parseStatement();
-
-    if (Object.keys(node).length !== 0) {
-      nodes.push(node);
-    }
+    nodes.push(parseStatement());
   }
 
   return nodes;
