@@ -232,7 +232,6 @@ const codeFromAst = (ast: Program) => {
 // Reference: https://webassembly.github.io/spec/core/binary/modules.html
 export const emitter: Emitter = (ast: Program) => {
   // Function types contain vectors of parameters and a return type
-  // TODO: maybe rename the two consts below into something better
   const voidVoidType = [functionType, emptyArray, emptyArray];
 
   const floatVoidType = [

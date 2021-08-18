@@ -6,11 +6,6 @@ export class ParserError extends Error {
   }
 }
 
-const asOperator = (value: string): Operator => {
-  // TODO: check if really an operator
-  return value as Operator;
-};
-
 export const parse: Parser = (tokens) => {
   const tokenIterator = tokens[Symbol.iterator]();
   let currentToken = tokenIterator.next().value;
@@ -53,7 +48,7 @@ export const parse: Parser = (tokens) => {
           type: "binaryExpression",
           left,
           right,
-          operator: asOperator(operator),
+          operator: operator as Operator,
         };
       }
       default:
