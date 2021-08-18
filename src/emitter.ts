@@ -115,7 +115,7 @@ const codeFromAst = (ast: Program) => {
   };
 
   const emitExpression = (node: ExpressionNode) =>
-    traverse(node, (node: ProgramNode) => {
+    traverse(node, (node) => {
       switch (node.type) {
         case "numberLiteral":
           code.push(Opcode.f32_const);
