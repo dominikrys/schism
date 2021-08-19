@@ -27,7 +27,7 @@ const apps: App[] = [
   {
     name: "Variable declaration (multi character name)",
     input: "var foo = 21 print foo",
-    expectedOutput: [21]
+    expectedOutput: [21],
   },
   {
     name: "Floating point variable declaration",
@@ -47,7 +47,7 @@ const apps: App[] = [
   {
     name: "Handles scientific notation and other numeric formats",
     input: "print 23e02 print -2 print .5",
-    expectedOutput: [2300, -2, 0.5]
+    expectedOutput: [2300, -2, 0.5],
   },
   {
     name: "While statements",
