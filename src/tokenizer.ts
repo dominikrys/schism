@@ -21,7 +21,7 @@ const regexMatcher =
   };
 
 const matchers = [
-  regexMatcher("^[.0-9]+", "number"),
+  regexMatcher("^-?[.0-9]+([eE]-?[0-9]{2})?", "number"),
   regexMatcher(`^(${keywords.join("|")})`, "keyword"),
   regexMatcher("^\\s+", "whitespace"),
   regexMatcher(`^(${operators.map(escapeRegex).join("|")})`, "operator"),

@@ -16,7 +16,7 @@ const apps: App[] = [
   { name: "Binary expressions", input: "print(2+ 4)", expectedOutput: [6] },
   {
     name: "Nested binary expressions",
-    input: "print ((6-4)+10)",
+    input: "print ((6 - 4)+10)",
     expectedOutput: [12],
   },
   {
@@ -38,6 +38,11 @@ const apps: App[] = [
     name: "Floating point variable assignment",
     input: "var f = 22.5 f = (f+1.5) print f",
     expectedOutput: [24],
+  },
+  {
+    name: "Handles scientific notation and other numeric formats",
+    input: "print 23e02 print -2 print .5",
+    expectedOutput: [2300, -2, 0.5]
   },
   {
     name: "While statements",
