@@ -20,9 +20,14 @@ const apps: App[] = [
     expectedOutput: [12],
   },
   {
-    name: "Variable declaration",
+    name: "Variable declaration (single character name)",
     input: "var f = 22 print f",
     expectedOutput: [22],
+  },
+  {
+    name: "Variable declaration (multi character name)",
+    input: "var foo = 21 print foo",
+    expectedOutput: [21]
   },
   {
     name: "Floating point variable declaration",

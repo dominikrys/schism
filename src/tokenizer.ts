@@ -25,7 +25,7 @@ const matchers = [
   regexMatcher(`^(${keywords.join("|")})`, "keyword"),
   regexMatcher("^\\s+", "whitespace"),
   regexMatcher(`^(${operators.map(escapeRegex).join("|")})`, "operator"),
-  regexMatcher(`^[a-z]`, "identifier"),
+  regexMatcher(`^[a-zA-Z]+`, "identifier"),
   regexMatcher(`^=`, "assignment"),
   regexMatcher("^[()]{1}", "parentheses"),
 ];

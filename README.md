@@ -42,7 +42,7 @@ Compile the website's TypeScript for debugging:
 yarn bundle-debug
 ```
 
-Host the website locally from the `docs` directory:
+Host the website locally from the `docs` or `docs-debug` directory:
 
 ```bash
 python3 -m http.server
@@ -53,8 +53,10 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 ## TODO
 
 - go through again + front end code
-- implement additional operators
-- check done extensions
+- implement extra features:
+  - if/else/endif
+  - add ability to share code (encode as base64 in URL)
+  - add proc invocations (`()`) and have setpixel use it
 - add info to readme on the language and syntax etc
 - redo front-end
   - Add GitHub corner
