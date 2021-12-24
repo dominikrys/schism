@@ -1,0 +1,56 @@
+canvas {
+  display: block;
+  border: 1px solid gray;
+}
+
+nav .btn {
+  margin-right: 10px;
+}
+
+textarea {
+  font-family: monospace;
+}
+
+.CodeMirror,
+textarea {
+  height: 400px !important;
+}
+
+.error {
+  border-color: red;
+  border-style: dotted;
+  border-width: 2px;
+}
+
+/* GitHub Corner Styling */
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
