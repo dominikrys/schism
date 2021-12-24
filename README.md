@@ -5,38 +5,38 @@
 
 Simple Compile-to-WebAssembly Language written in TypeScript.
 
-[<ins>**Try it out online!**</ins>](http://dominikrys.com/schism/)
+[**Try it out online!**](http://dominikrys.com/schism/)
 
-Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html). The project has been written using up-to-date versions of TypeScript and Node.js, unlike those used in the before mentioned blog post.
+Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html), rewritten using up-to-date versions of TypeScript and Node.
 
 The aim of this project was to learn about compilers and TypeScript.
 
 ## Build and Run Instructions
 
-Pre-requisites:
+### Pre-requisites
 
 - [Node.js](https://nodejs.org/en/)
 - [yarn](https://classic.yarnpkg.com/en/docs/install/)
 
-To build:
+Build compiler:
 
 ```bash
 yarn build
 ```
 
-Run tests:
+Run compiler tests:
 
 ```bash
 yarn test
 ```
 
-Compile the website's TypeScript for production:
+Compile the website for production:
 
 ```bash
 yarn bundle
 ```
 
-Compile the website's TypeScript for debugging:
+Compile the website for debugging:
 
 ```bash
 yarn bundle-debug
@@ -45,23 +45,27 @@ yarn bundle-debug
 Host the website locally from the `docs` or `docs-debug` directory:
 
 ```bash
-python3 -m http.server
+(cd docs && python3 -m http.server)
 ```
+
+### Pre-Commit Checks
 
 For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
+## Code Structure
+
+- `src`: Compiler source code
+- `__tests__`: Compiler tests
+- `docs`: Website source code (JavaScript is generated)
+
 ## TODO
 
-- go through again + front end code
-- implement extra features:
-  - if/else/endif
-  - add ability to share code (encode as base64 in URL)
-  - add proc invocations (`()`) and have setpixel use it
-- add info to readme on the language and syntax etc
-- redo front-end
-  - Add GitHub corner
+- add ability to share code (encode as base64 in URL)
+- add info to readme and website on the language and syntax etc
+- front-end:
+  - update bootstrap
+  - redo to my liking including styling
   - add name of compiler
-  - add styling
   - add description - say when "run" is clicked, code is tokenised and parsed into an AST. Interpreter uses JS to execute the AST, and compiler uses AST to compile into WASM
   - mention limits of screen being 0-99
 - add images to README
