@@ -1,11 +1,25 @@
 declare const CodeMirror: any;
+declare const $: any;
+
+import copy from "copy-to-clipboard";
 
 import { runtime as interpreterRuntime } from "../src/interpreter";
 import { runtime as compilerRuntime } from "../src/compiler";
 import { keywords } from "../src/tokenizer";
 import { Constants } from "../src/constants";
 import { ParserError } from "../src/parser";
+
+const compileButton = document.getElementById("compile");
+const interpretButton = document.getElementById("interpret");
+const codeArea = document.getElementById("code") as HTMLTextAreaElement;
+const outputArea = document.getElementById("output") as HTMLTextAreaElement;
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const shareUrlField = document.getElementById(
+  "shareUrlField"
+) as HTMLInputElement;
+const copyUrlButton = document.getElementById(
+  "copyUrlButton"
+) as HTMLInputElement;
 
 // quick and dirty image data scaling
 // see: https://stackoverflow.com/questions/3448347/how-to-scale-an-imagedata-in-html-canvas
@@ -36,11 +50,6 @@ const scaleImageData = (
   return scaled;
 };
 
-const compileButton = document.getElementById("compile");
-const interpretButton = document.getElementById("interpret");
-const codeArea = document.getElementById("code") as HTMLTextAreaElement;
-const outputArea = document.getElementById("output") as HTMLTextAreaElement;
-
 CodeMirror.defineSimpleMode("simplemode", {
   start: [
     {
@@ -61,6 +70,19 @@ const editor = CodeMirror.fromTextArea(codeArea, {
   theme: "abcdef",
   lineNumbers: true,
 });
+
+$("#shareModal").on("show.bs.modal", () => {
+  const baseUrl = window.location.href.split("#")[0];
+  const codeBase64 = Buffer.from(editor.getValue(), "binary").toString(
+    "base64"
+  );
+  const encodedCodeBase64 = encodeURIComponent(codeBase64);
+  shareUrlField.value = `${baseUrl}#${encodedCodeBase64}`;
+
+  shareUrlField.select();
+});
+
+copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
 
 const sleep = async (ms: number) =>
   await new Promise((resolve) => setTimeout(resolve, ms));

@@ -89,18 +89,19 @@ export const parse: Parser = (tokens) => {
     return { type: "variableAssignment", name, value: parseExpression() };
   };
 
-  const parseVariableDeclarationStatement: ParserStep<VariableDeclarationNode> =
-    () => {
-      eatToken("var");
-      const name = currentToken.value;
-      eatToken();
-      eatToken("=");
-      return {
-        type: "variableDeclaration",
-        name,
-        initializer: parseExpression(),
-      };
+  const parseVariableDeclarationStatement: ParserStep<
+    VariableDeclarationNode
+  > = () => {
+    eatToken("var");
+    const name = currentToken.value;
+    eatToken();
+    eatToken("=");
+    return {
+      type: "variableDeclaration",
+      name,
+      initializer: parseExpression(),
     };
+  };
 
   const parseSetPixelStatement: ParserStep<SetPixelStatementNode> = () => {
     eatToken("setpixel");

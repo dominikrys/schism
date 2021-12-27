@@ -58,9 +58,14 @@ For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilma
 - `__tests__`: Compiler tests
 - `docs`: Website source code (JavaScript is generated)
 
+## Upgrading Libraries
+
+```bash
+yarn upgrade
+```
+
 ## TODO
 
-- add ability to share code (encode as base64 in URL)
 - add info to readme and website on the language and syntax etc
 - front-end:
   - update bootstrap
