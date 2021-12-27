@@ -1,0 +1,11 @@
+## NPM and TS
+dist
+node_modules
+tsconfig.json
+
+# Auto-generated
+docs/bundle.js
+
+# Other
+docs-debug
+docs/index.html

@@ -2,7 +2,7 @@ pre-push:
   piped: true
   commands:
     format:
-      run: yarn format
+      run: yarn format-check
     lint:
       run: yarn lint
     test:

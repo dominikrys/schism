@@ -21,7 +21,7 @@ const shareUrlField = document.getElementById(
 const copyUrlButton = document.getElementById(
   "copyUrlButton"
 ) as HTMLInputElement;
-const description = document.getElementById('description') as HTMLDivElement;
+const description = document.getElementById("description") as HTMLDivElement;
 
 if (window.location.hash) {
   const codeBase64 = window.location.href.split("#")[1];
@@ -68,7 +68,7 @@ CodeMirror.defineSimpleMode("simplemode", {
       regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
       token: "number",
     },
-    { regex: /[-+\/*=<>!]+/, token: "operator" },
+    { regex: /[-+/*=<>!]+/, token: "operator" },
     { regex: /[a-z$][\w$]*/, token: "variable" },
   ],
 });

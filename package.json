@@ -29,8 +29,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "yarn run eslint ./src ./__tests__ --max-warnings=0",
-    "format": "yarn prettier ./src ./__tests__ -c",
+    "lint": "yarn run eslint . --max-warnings=0 --ignore-path .lintformatignore",
+    "format-check": "yarn prettier . -c --ignore-path .lintformatignore",
+    "format": "yarn prettier . -w --ignore-path .lintformatignore",
     "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js",
     "bundle-debug": "rsync -a --delete docs/ docs-debug/ && browserify docs-debug/index.ts --debug -p [ tsify] > docs-debug/bundle.js"
   }
