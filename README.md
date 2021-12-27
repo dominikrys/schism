@@ -52,17 +52,17 @@ Host the website locally from the `docs` or `docs-debug` directory:
 
 For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
+### Upgrading Libraries
+
+```bash
+yarn upgrade
+```
+
 ## Code Structure
 
 - `src`: Compiler source code
 - `__tests__`: Compiler tests
 - `docs`: Website source code (JavaScript is generated)
-
-## Upgrading Libraries
-
-```bash
-yarn upgrade
-```
 
 ## TODO
 
@@ -74,6 +74,5 @@ yarn upgrade
     - dark theme?
     - add title centered on top of the page
     - add radio buttons for whether to use the compiler or interpreter
-    - add description
 - add images to README
 - make repo public

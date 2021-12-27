@@ -2,6 +2,7 @@ declare const CodeMirror: any;
 declare const $: any;
 
 import copy from "copy-to-clipboard";
+import { marked } from "marked";
 
 import { runtime as interpreterRuntime } from "../src/interpreter";
 import { runtime as compilerRuntime } from "../src/compiler";
@@ -20,6 +21,7 @@ const shareUrlField = document.getElementById(
 const copyUrlButton = document.getElementById(
   "copyUrlButton"
 ) as HTMLInputElement;
+const description = document.getElementById('description') as HTMLDivElement;
 
 if (window.location.hash) {
   const codeBase64 = window.location.href.split("#")[1];
@@ -169,3 +171,25 @@ $("#shareModal").on("show.bs.modal", () => {
 });
 
 copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
+
+const descriptionText = `
+When the code is run, the code is tokenised and parsed into an Abstract Syntax Tree (AST). When using the interpreter, the AST is executed using JavaScript. When using the compiler, the AST is compiled into a WebAssembly module and executed by the WebAssembly runtime.
+
+## Language
+
+The syntax is fairly straightforward. As a summary of the main language features:
+
+- Print variable value: \`print <variable>\`.
+
+- Assign value to a variable: \`var <name> = <value>\`.
+
+- Set pixel in the canvas: \`setpixel (<x>, <y>, <colour>)\`. \`x\` and \`y\` are in the range 0-99 inclusive and \`colour\` is a value in the range 0-255 inclusive (where 0 is black and 255 is white).
+
+- While loop: \`while (<condition>) <code> endwhile\`
+
+- Operators: \`+\`, \`-\`, \`*\`, \`/\`, \`==\`, \`<\`, \`>\`, \`&&\`, \`||\`.
+
+- The language can parse scientific notation, floating points, and negative values.
+`;
+
+description.innerHTML = marked.parse(descriptionText);
