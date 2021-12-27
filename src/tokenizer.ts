@@ -1,5 +1,5 @@
 export const keywords = ["print", "var", "while", "endwhile", "setpixel"];
-export const operators = ["+", "-", "*", "/", "==", "<", ">", "&&"];
+export const operators = ["+", "-", "*", "/", "==", "<", ">", "&&", "||"];
 
 const escapeRegex = (text: string) =>
   text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

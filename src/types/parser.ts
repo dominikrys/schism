@@ -7,7 +7,7 @@ interface NumberLiteralNode extends ProgramNode {
   value: number;
 }
 
-type Operator = "+" | "-" | "/" | "*" | "==" | ">" | "<" | "&&";
+type Operator = "+" | "-" | "/" | "*" | "==" | ">" | "<" | "&&" | "||";
 
 interface BinaryExpresionNode extends ProgramNode {
   type: "binaryExpression";

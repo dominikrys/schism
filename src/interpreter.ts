@@ -20,6 +20,8 @@ const applyOperator = (operator: string, left: number, right: number) => {
       return left < right ? 1 : 0;
     case "&&":
       return left && right;
+    case "||":
+      return left || right;
   }
   throw Error(`Unknown binary operator ${operator}`);
 };
