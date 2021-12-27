@@ -11,12 +11,12 @@ Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/ch
 
 The aim of this project was to learn about compilers and TypeScript.
 
-## Build and Run Instructions
-
-### Pre-requisites
+## Pre-requisites
 
 - [Node.js](https://nodejs.org/en/)
 - [yarn](https://classic.yarnpkg.com/en/docs/install/)
+
+## Build and Run Instructions
 
 Build compiler:
 
