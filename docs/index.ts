@@ -21,6 +21,12 @@ const copyUrlButton = document.getElementById(
   "copyUrlButton"
 ) as HTMLInputElement;
 
+if (window.location.hash) {
+  const codeBase64 = window.location.href.split("#")[1];
+  const code = Buffer.from(codeBase64, "base64").toString("binary");
+  codeArea.value = decodeURIComponent(code);
+}
+
 // quick and dirty image data scaling
 // see: https://stackoverflow.com/questions/3448347/how-to-scale-an-imagedata-in-html-canvas
 const scaleImageData = (
@@ -67,15 +73,14 @@ CodeMirror.defineSimpleMode("simplemode", {
 
 const editor = CodeMirror.fromTextArea(codeArea, {
   mode: "simplemode",
-  theme: "abcdef",
+  theme: "monokai",
   lineNumbers: true,
 });
 
 $("#shareModal").on("show.bs.modal", () => {
   const baseUrl = window.location.href.split("#")[0];
-  const codeBase64 = Buffer.from(editor.getValue(), "binary").toString(
-    "base64"
-  );
+  const code = editor.getValue();
+  const codeBase64 = Buffer.from(code, "binary").toString("base64");
   const encodedCodeBase64 = encodeURIComponent(codeBase64);
   shareUrlField.value = `${baseUrl}#${encodedCodeBase64}`;
 

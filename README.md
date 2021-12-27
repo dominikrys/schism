@@ -70,6 +70,8 @@ yarn upgrade
 - front-end:
   - update bootstrap
   - redo to my liking including styling
+    - add console output below, make console and canvas output bigger
+    - add buttoms lower
   - add name of compiler
   - add description - say when "run" is clicked, code is tokenised and parsed into an AST. Interpreter uses JS to execute the AST, and compiler uses AST to compile into WASM
   - mention limits of screen being 0-99
