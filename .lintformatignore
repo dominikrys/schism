@@ -7,5 +7,4 @@ tsconfig.json
 docs/bundle.js
 
 # Other
-docs-debug
 docs/index.html

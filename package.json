@@ -10,21 +10,25 @@
     "@thi.ng/leb128": "^1.0.64",
     "@types/marked": "^4.0.1",
     "@types/node": "^16.4.13",
-    "browserify": "^17.0.0",
     "copy-to-clipboard": "^3.3.1",
-    "tsify": "^5.0.4",
-    "typescript": "^4.3.5",
-    "uglify-js": "^3.14.1"
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "browserify": "^17.0.0",
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "marked": "^4.0.8",
+    "opener": "^1.5.2",
     "prettier": "^2.3.2",
-    "ts-jest": "^27.0.4"
+    "serve": "^13.0.2",
+    "ts-jest": "^27.0.4",
+    "tsify": "^5.0.4",
+    "uglify-js": "^3.14.1",
+    "watchify": "^4.0.0",
+    "yarn-run-all": "^3.1.1"
   },
   "scripts": {
     "build": "tsc",
@@ -33,6 +37,8 @@
     "format-check": "yarn prettier . -c --ignore-path .lintformatignore",
     "format": "yarn prettier . -w --ignore-path .lintformatignore",
     "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js",
-    "bundle-debug": "rsync -a --delete docs/ docs-debug/ && browserify docs-debug/index.ts --debug -p [ tsify] > docs-debug/bundle.js"
+    "watch": "watchify docs/index.ts -p [ tsify ] -o docs/bundle.js --debug",
+    "serve": "serve ./docs -p 8000",
+    "start": "npm-run-all --parallel watch serve"
   }
 }

@@ -30,22 +30,16 @@ Run compiler tests:
 yarn test
 ```
 
+Host the website locally and watch for changes:
+
+```bash
+yarn start
+```
+
 Compile the website for production:
 
 ```bash
 yarn bundle
-```
-
-Compile the website for debugging:
-
-```bash
-yarn bundle-debug
-```
-
-Host the website locally from the `docs` or `docs-debug` directory:
-
-```bash
-(cd docs && python3 -m http.server)
 ```
 
 ### Pre-Commit Checks
