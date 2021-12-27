@@ -27,8 +27,7 @@ if (window.location.hash) {
   codeArea.value = decodeURIComponent(code);
 }
 
-// quick and dirty image data scaling
-// see: https://stackoverflow.com/questions/3448347/how-to-scale-an-imagedata-in-html-canvas
+// Ref: https://stackoverflow.com/a/40772881/13749561
 const scaleImageData = (
   imageData: ImageData,
   scale: number,
@@ -53,6 +52,7 @@ const scaleImageData = (
       }
     }
   }
+
   return scaled;
 };
 
@@ -77,29 +77,15 @@ const editor = CodeMirror.fromTextArea(codeArea, {
   lineNumbers: true,
 });
 
-$("#shareModal").on("show.bs.modal", () => {
-  const baseUrl = window.location.href.split("#")[0];
-  const code = editor.getValue();
-  const codeBase64 = Buffer.from(code, "binary").toString("base64");
-  const encodedCodeBase64 = encodeURIComponent(codeBase64);
-  shareUrlField.value = `${baseUrl}#${encodedCodeBase64}`;
+const logMessage = (message: string | number) => {
+  outputArea.value = outputArea.value + message + "\n";
+};
 
-  shareUrlField.select();
-});
-
-copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
-
-const sleep = async (ms: number) =>
-  await new Promise((resolve) => setTimeout(resolve, ms));
-
-let marker: any;
-
-const logMessage = (message: string | number) =>
-  (outputArea.value = outputArea.value + message + "\n");
+let errorMarker: any;
 
 const markError = (token: Token) => {
   if (token.char) {
-    marker = editor.markText(
+    errorMarker = editor.markText(
       { line: token.line, ch: token.char },
       { line: token.line, ch: token.char + token.value.length },
       { className: "error" }
@@ -126,9 +112,13 @@ const updateCanvas = (displayBuffer: Uint8Array) => {
 };
 
 const run = async (runtime: Runtime) => {
-  if (marker) {
-    marker.clear();
+  if (errorMarker) {
+    errorMarker.clear();
   }
+
+  const sleep = async (ms: number) => {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
   await sleep(10);
 
@@ -167,3 +157,15 @@ compileButton?.addEventListener("click", async () => {
   interpretButton?.classList.remove("active");
   await run(compilerRuntime);
 });
+
+$("#shareModal").on("show.bs.modal", () => {
+  const baseUrl = window.location.href.split("#")[0];
+  const code = editor.getValue();
+  const codeBase64 = Buffer.from(code, "binary").toString("base64");
+  const encodedCodeBase64 = encodeURIComponent(codeBase64);
+  shareUrlField.value = `${baseUrl}#${encodedCodeBase64}`;
+
+  shareUrlField.select();
+});
+
+copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
