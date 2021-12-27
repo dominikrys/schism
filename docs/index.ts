@@ -4,6 +4,7 @@ import { runtime as interpreterRuntime } from "../src/interpreter";
 import { runtime as compilerRuntime } from "../src/compiler";
 import { keywords } from "../src/tokenizer";
 import { Constants } from "../src/constants";
+import { ParserError } from "../src/parser";
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
 // quick and dirty image data scaling
@@ -122,9 +123,9 @@ const run = async (runtime: Runtime) => {
 
     interpretButton?.classList.remove("active");
     compileButton?.classList.remove("active");
-  } catch (error) {
-    logMessage(error.message);
-    markError(error.token);
+  } catch (e) {
+    logMessage((e as ParserError).message);
+    markError((e as ParserError).token);
   }
 };
 
