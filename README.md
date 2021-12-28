@@ -61,12 +61,10 @@ yarn upgrade
 ## TODO
 
 - front-end:
-  - update bootstrap
-  - redo to my liking including styling
-    - add console output below, make console and canvas output bigger
-    - add buttons lower
-    - dark theme?
-    - add title centered on top of the page
-    - add radio buttons for whether to use the compiler or interpreter
+  - add console output below, make console and canvas output bigger
+  - add buttons lower
+  - dark theme?
+  - add title centered on top of the page
+  - add radio buttons for whether to use the compiler or interpreter
 - add images to README
 - make repo public
