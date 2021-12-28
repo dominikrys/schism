@@ -173,9 +173,12 @@ $("#shareModal").on("show.bs.modal", () => {
 copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
 
 const descriptionText = `
+
+#### Schism Compile-To-WebAssembly Language
+
 When the code is run, the code is tokenised and parsed into an Abstract Syntax Tree (AST). When using the interpreter, the AST is executed using JavaScript. When using the compiler, the AST is compiled into a WebAssembly module and executed by the WebAssembly runtime.
 
-## Language
+##### Language
 
 The syntax is fairly straightforward. As a summary of the main language features:
 

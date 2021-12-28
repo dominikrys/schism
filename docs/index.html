@@ -22,18 +22,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button id="interpret" class="btn btn-outline-success">
-            Run (interpreter)
-        </button>
-        <button id="compile" class="btn btn-outline-success">
-            Run (compiler)
-        </button>
-        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#shareModal">
-            Share
-        </button>
-    </nav>
-
     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -108,7 +96,21 @@ endwhile
         </div>
     </div>
 
-    <div id="description"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button id="interpret" class="btn btn-outline-success">
+            Run (interpreter)
+        </button>
+        <button id="compile" class="btn btn-outline-success">
+            Run (compiler)
+        </button>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#shareModal">
+            Share
+        </button>
+    </nav>
+
+    <div class="container">
+        <div id="description"></div>
+    </div>
 
     <a href="https://github.com/dominikrys/schism" class="github-corner" aria-label="View source on GitHub"><svg
             width="80" height="80" viewBox="0 0 250 250" style="
