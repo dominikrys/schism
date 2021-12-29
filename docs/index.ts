@@ -13,7 +13,9 @@ import { ParserError } from "../src/parser";
 const compileButton = document.getElementById("compile");
 const interpretButton = document.getElementById("interpret");
 const codeArea = document.getElementById("code") as HTMLTextAreaElement;
-const consoleOutput = document.getElementById("console-output") as HTMLTextAreaElement;
+const consoleOutput = document.getElementById(
+  "console-output"
+) as HTMLTextAreaElement;
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const shareUrlField = document.getElementById(
   "shareUrlField"
@@ -22,6 +24,7 @@ const copyUrlButton = document.getElementById(
   "copyUrlButton"
 ) as HTMLInputElement;
 const description = document.getElementById("description") as HTMLDivElement;
+const runSpinner = document.getElementById("run-spinner") as HTMLDivElement;
 
 if (window.location.hash) {
   const codeBase64 = window.location.href.split("#")[1];
@@ -119,6 +122,10 @@ const run = async (runtime: Runtime) => {
     errorMarker.clear();
   }
 
+  consoleOutput.value = "";
+
+  runSpinner.hidden = false;
+
   const sleep = async (ms: number) => {
     await new Promise((resolve) => setTimeout(resolve, ms));
   };
@@ -134,9 +141,6 @@ const run = async (runtime: Runtime) => {
       displayMemory,
     });
 
-    consoleOutput.value = "";
-    logMessage(`Executing ... `);
-
     tickFunction();
     const displayBuffer = new Uint8Array(displayMemory.buffer);
     updateCanvas(displayBuffer);
@@ -146,6 +150,8 @@ const run = async (runtime: Runtime) => {
   } catch (e) {
     logMessage((e as ParserError).message);
     markError((e as ParserError).token);
+  } finally {
+    runSpinner.hidden = true;
   }
 };
 
