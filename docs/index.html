@@ -101,21 +101,25 @@ endwhile
     </div>
     </div>
 
-    <nav class="navbar navbar-expand-sm">
-        <button id="interpret" class="btn btn-primary">
-            Run Interpreter
-        </button>
-        <button id="compile" class="btn btn-primary">
-            Run Compiler
-        </button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareModal">
-            Share
-        </button>
-        <div id="run-spinner" hidden>
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+    <nav class="navbar navbar-expand-sm justify-content-between">
+        <ul class="navbar-nav mr-auto">
+            <button id="interpret" class="btn btn-primary">
+                Run Interpreter
+            </button>
+            <button id="compile" class="btn btn-primary">
+                Run Compiler
+            </button>
+            <div id="run-spinner" hidden>
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
-        </div>
+        </ul>
+        <form class="form-inline">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareModal">
+                Share
+            </button>
+        </form>
     </nav>
 
     <div class="container">
