@@ -63,5 +63,6 @@ yarn upgrade
 - front-end:
   - add spacing
   - dark theme
-- add images to README
+- add images to README + note to check website for language info
 - make repo public
+- get live reload working (without gulp)?

@@ -36,8 +36,8 @@
     "lint": "yarn run eslint . --max-warnings=0 --ignore-path .lintformatignore",
     "format-check": "yarn prettier . -c --ignore-path .lintformatignore",
     "format": "yarn prettier . -w --ignore-path .lintformatignore",
-    "bundle": "browserify docs/index.ts -p [ tsify ] | uglifyjs > docs/bundle.js",
-    "watch": "watchify docs/index.ts -p [ tsify ] -o docs/bundle.js --debug",
+    "bundle": "browserify docs/index.ts -p tsify | uglifyjs > docs/bundle.js",
+    "watch": "watchify docs/index.ts -p tsify -o docs/bundle.js --verbose --debug",
     "serve": "serve ./docs -p 8000",
     "start": "npm-run-all --parallel watch serve"
   }
