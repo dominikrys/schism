@@ -17,6 +17,10 @@ textarea {
   font-size: 14px;
 }
 
+#console-output {
+  resize: none;
+}
+
 .error {
   border-color: red;
   border-style: dotted;

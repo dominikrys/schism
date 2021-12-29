@@ -13,7 +13,7 @@ import { ParserError } from "../src/parser";
 const compileButton = document.getElementById("compile");
 const interpretButton = document.getElementById("interpret");
 const codeArea = document.getElementById("code") as HTMLTextAreaElement;
-const outputArea = document.getElementById("output") as HTMLTextAreaElement;
+const consoleOutput = document.getElementById("console-output") as HTMLTextAreaElement;
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const shareUrlField = document.getElementById(
   "shareUrlField"
@@ -80,7 +80,7 @@ const editor = CodeMirror.fromTextArea(codeArea, {
 });
 
 const logMessage = (message: string | number) => {
-  outputArea.value = outputArea.value + message + "\n";
+  consoleOutput.value = consoleOutput.value + message + "\n";
 };
 
 let errorMarker: any;
@@ -134,7 +134,7 @@ const run = async (runtime: Runtime) => {
       displayMemory,
     });
 
-    outputArea.value = "";
+    consoleOutput.value = "";
     logMessage(`Executing ... `);
 
     tickFunction();
