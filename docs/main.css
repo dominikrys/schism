@@ -12,15 +12,11 @@ canvas {
   background: #1b1b17;
 }
 
-nav .btn {
+.navbar-nav .btn {
   margin-right: 10px;
 }
 
-#console-output {
-  font-family: monospace;
-}
-
-.ide-element {
+.output-element {
   background: #1b1b17;
   border: 1px solid gray;
   border-radius: 5px;
@@ -34,6 +30,7 @@ nav .btn {
 .close {
   opacity: 1;
 }
+
 .close span {
   color: #f8f8f2;
 }
@@ -44,14 +41,20 @@ textarea {
   font-size: 14px;
 }
 
-#console-output {
-  resize: none;
-}
-
 .error {
   border-color: red;
   border-style: dotted;
   border-width: 2px;
+}
+
+#console-output {
+  resize: none;
+  font-family: monospace;
+}
+
+#description {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* GitHub Corner Styling */

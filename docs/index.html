@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col-8">
                 <b>Code</b>
-                <textarea rows="20" class="form-control" id="code" wrap="off" class="ide-element">
+                <textarea rows="20" class="form-control" id="code" wrap="off" class="output-element">
 var y = 0
 while (y < 100)
     y = (y + 1)
@@ -87,20 +87,17 @@ while (y < 100)
 endwhile
 </textarea>
             </div>
-
             <div class="col">
                 <div class="canvas-container">
                     <b>Canvas output</b>
-                    <canvas id="canvas" width="200" height="200" class="ide-element"></canvas>
+                    <canvas id="canvas" width="200" height="200" class="output-element"></canvas>
                 </div>
-
                 <div>
                     <b>Console output</b>
-                    <textarea rows="11" id="console-output" class="form-control ide-element"></textarea>
+                    <textarea rows="11" id="console-output" class="form-control output-element"></textarea>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <nav class="navbar navbar-expand-sm justify-content-between">
