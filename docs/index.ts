@@ -109,7 +109,8 @@ const updateCanvas = (displayBuffer: Uint8Array) => {
     imgData.data[i * 4 + 3] = 255; // Alpha
   }
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const data = scaleImageData(imgData, 3, context!);
+  const scaleFactor = canvas.width / 100;
+  const data = scaleImageData(imgData, scaleFactor, context!);
   context?.putImageData(data, 0, 0);
 };
 
@@ -174,19 +175,21 @@ copyUrlButton.addEventListener("click", () => copy(shareUrlField.value));
 
 const descriptionText = `
 
-#### Schism Compile-To-WebAssembly Language
+#### Schism
+
+###### Compile-To-WebAssembly Language in TypeScript
 
 When the code is run, the code is tokenised and parsed into an Abstract Syntax Tree (AST). When using the interpreter, the AST is executed using JavaScript. When using the compiler, the AST is compiled into a WebAssembly module and executed by the WebAssembly runtime.
 
 ##### Language
 
-The syntax is fairly straightforward. As a summary of the main language features:
+Please refer to the example code to get started. As a summary of the main language features:
 
 - Print variable value: \`print <variable>\`.
 
 - Assign value to a variable: \`var <name> = <value>\`.
 
-- Set pixel in the canvas: \`setpixel (<x>, <y>, <colour>)\`. \`x\` and \`y\` are in the range 0-99 inclusive and \`colour\` is a value in the range 0-255 inclusive (where 0 is black and 255 is white).
+- Set pixel in the canvas: \`setpixel (<x>, <y>, <colour>)\`. \`x\` and \`y\` are in the range 1-100 inclusive and \`colour\` is a value in the range 0-255 inclusive (where 0 is black and 255 is white).
 
 - While loop: \`while (<condition>) <code> endwhile\`
 

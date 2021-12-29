@@ -13,7 +13,8 @@ textarea {
 
 .CodeMirror,
 textarea {
-  height: 400px !important;
+  height: 500px;
+  font-size: 14px;
 }
 
 .error {

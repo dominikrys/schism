@@ -54,7 +54,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-8">
                 <b>Code</b>
                 <textarea rows="20" class="form-control" id="code" wrap="off">
 var y = 0
@@ -85,15 +85,20 @@ while (y < 100)
 endwhile
     </textarea>
             </div>
-            <div class="col-md-3">
-                <b>Console output</b>
-                <textarea rows="20" id="output" class="form-control" wrap="off"></textarea>
-            </div>
-            <div class="col-md-4">
-                <b>Canvas output</b>
-                <canvas id="canvas" width="300" height="300"></canvas>
+
+            <div class="col-3">
+                <div class="canvas-container">
+                    <b>Canvas output</b>
+                    <canvas id="canvas" width="200" height="200"></canvas>
+                </div>
+
+                <div>
+                    <b>Console output</b>
+                    <textarea rows="8" id="output" class="form-control"></textarea>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

@@ -64,6 +64,7 @@ yarn upgrade
   - add console output below, make console and canvas output bigger
   - add buttons lower
   - add radio buttons for whether to use the compiler or interpreter
+  - get rid of gh corner?
   - dark theme?
 - add images to README
 - make repo public
