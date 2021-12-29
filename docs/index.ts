@@ -99,9 +99,10 @@ const markError = (token: Token) => {
 };
 
 const updateCanvas = (displayBuffer: Uint8Array) => {
-  const context = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d");
+
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const imgData = context!.createImageData(
+  const imgData = ctx!.createImageData(
     Constants.CANVAS_DIM,
     Constants.CANVAS_DIM
   );
@@ -111,10 +112,11 @@ const updateCanvas = (displayBuffer: Uint8Array) => {
     imgData.data[i * 4 + 2] = displayBuffer[i]; // Blue
     imgData.data[i * 4 + 3] = 255; // Alpha
   }
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
   const scaleFactor = canvas.width / 100;
-  const data = scaleImageData(imgData, scaleFactor, context!);
-  context?.putImageData(data, 0, 0);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const data = scaleImageData(imgData, scaleFactor, ctx!);
+  ctx?.putImageData(data, 0, 0);
 };
 
 const run = async (runtime: Runtime) => {
