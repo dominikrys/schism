@@ -36,7 +36,7 @@
                         <div class="input-group mb-3">
                             <input type="text" disabled="true" class="form-control" id="shareUrlField" />
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="copyUrlButton">
+                                <button class="btn btn-dark" type="button" id="copyUrlButton">
                                     Copy
                                 </button>
                             </div>
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-8">
                 <b>Code</b>
-                <textarea rows="20" class="form-control" id="code" wrap="off">
+                <textarea rows="20" class="form-control" id="code" wrap="off" class="ide-element">
 var y = 0
 while (y < 100)
     y = (y + 1)
@@ -83,18 +83,18 @@ while (y < 100)
     setpixel x y c
     endwhile
 endwhile
-    </textarea>
+</textarea>
             </div>
 
             <div class="col">
                 <div class="canvas-container">
                     <b>Canvas output</b>
-                    <canvas id="canvas" width="200" height="200"></canvas>
+                    <canvas id="canvas" width="200" height="200" class="ide-element"></canvas>
                 </div>
 
                 <div>
                     <b>Console output</b>
-                    <textarea rows="11" id="console-output" class="form-control"></textarea>
+                    <textarea rows="11" id="console-output" class="form-control ide-element"></textarea>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@ endwhile
             </div>
         </ul>
         <form class="form-inline">
-            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareModal">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#shareModal">
                 Share
             </button>
         </form>

@@ -1,14 +1,41 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: #272822;
+  color: #f8f8f2;
+}
+
 canvas {
   display: block;
-  border: 1px solid gray;
+  background: #1b1b17;
 }
 
 nav .btn {
   margin-right: 10px;
 }
 
-textarea {
+#console-output {
   font-family: monospace;
+}
+
+.ide-element {
+  background: #1b1b17;
+  border: 1px solid gray;
+  border-radius: 5px;
+  color: #f8f8f2;
+}
+
+.modal-content {
+  background: #1b1b17;
+}
+
+.close {
+  opacity: 1;
+}
+.close span {
+  color: #f8f8f2;
 }
 
 .CodeMirror,
