@@ -61,6 +61,14 @@ textarea {
   margin-top: 10px;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
 /* GitHub Corner Styling */
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;

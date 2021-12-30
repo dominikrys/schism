@@ -1,15 +1,15 @@
 # Schism
 
-[![Build Status](https://img.shields.io/github/workflow/status/dominikrys/schism/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/wasm-compiler/actions)
+[![Build Status](https://img.shields.io/github/workflow/status/dominikrys/schism/Continuous%20Integration?style=flat-square)](https://github.com/dominikrys/schism/actions)
 [![Website](https://img.shields.io/website?down_color=lightgrey&style=flat-square&down_message=offline&up_color=brightgreen&up_message=online&url=https%3A%2F%2Fdominikrys.com%2Fschism)](https://dominikrys.com/schism/)
 
 Simple programming language that compiles to WebAssembly, written in TypeScript.
 
 [**Try it out online!**](http://dominikrys.com/schism/)
 
-Based heavily off Colin Eberhardt's [chasm](https://github.com/ColinEberhardt/chasm) language and [its corresponding blog post](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html), rewritten using up-to-date versions of TypeScript and Node.
+Based off Colin Eberhardt's [blog post on writing a WebAssembly compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html), rewritten using up-to-date versions of TypeScript and Node.
 
-The aim of this project was mainly to learn about compilers and TypeScript, but it also turned into a playground for front-end development.
+The aim of this project was to learn about compilers, TypeScript, and front-end development.
 
 ## Pre-requisites
 
@@ -60,8 +60,10 @@ yarn upgrade
 
 ## TODO
 
-- front-end:
-  - add spacing
+- bundle website + deploy
+- deploy from CI: https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131
 - add images to README + note to check website for language info
+- make sure the website looks fine on mobile (don't make the container fluid?)
 - make repo public
-- get live reload working (without gulp)?
+- add repo to pinned project
+- get live reload working (without gulp)? nodemon? then blog post?x
