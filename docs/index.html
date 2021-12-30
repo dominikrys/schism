@@ -57,8 +57,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-8">
-                <b>Code</b>
-                <textarea rows="20" class="form-control" id="code" wrap="off" class="output-element">
+                <div class="output-element">
+                    <h6>Code</h6>
+                    <textarea rows="20" class="form-control" id="code" wrap="off" class="output-element-box">
 var y = 0
 while (y < 100)
     y = (y + 1)
@@ -86,15 +87,16 @@ while (y < 100)
     endwhile
 endwhile
 </textarea>
+                </div>
             </div>
             <div class="col">
-                <div class="canvas-container">
-                    <b>Canvas output</b>
-                    <canvas id="canvas" width="200" height="200" class="output-element"></canvas>
+                <div class="output-element">
+                    <h6>Canvas Output</h6>
+                    <canvas id="canvas" width="200" height="200" class="output-element-box"></canvas>
                 </div>
-                <div>
-                    <b>Console output</b>
-                    <textarea rows="11" id="console-output" class="form-control output-element"></textarea>
+                <div class="output-element">
+                    <h6>Console Output</h6>
+                    <textarea rows="10" id="console-output" class="form-control output-element-box"></textarea>
                 </div>
             </div>
         </div>

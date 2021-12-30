@@ -16,7 +16,7 @@ canvas {
   margin-right: 10px;
 }
 
-.output-element {
+.output-element-box {
   background: #1b1b17;
   border: 1px solid gray;
   border-radius: 5px;
@@ -55,6 +55,10 @@ textarea {
 #description {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.output-element {
+  margin-top: 10px;
 }
 
 /* GitHub Corner Styling */
