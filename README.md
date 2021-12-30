@@ -63,7 +63,7 @@ yarn upgrade
 - bundle website + deploy
 - deploy from CI: https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131
 - add images to README + note to check website for language info
-- make sure the website looks fine on mobile (don't make the container fluid?)
+- make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
 - make repo public
 - add repo to pinned project
 - get live reload working (without gulp)? nodemon? then blog post?x

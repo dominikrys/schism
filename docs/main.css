@@ -17,10 +17,9 @@ canvas {
 }
 
 .output-element-box {
-  background: #1b1b17;
+  background-color: #1b1b17;
   border: 1px solid gray;
   border-radius: 5px;
-  color: #f8f8f2;
 }
 
 .modal-content {
@@ -50,6 +49,8 @@ textarea {
 #console-output {
   resize: none;
   font-family: monospace;
+  background-color: #1b1b17;
+  color: #f8f8f2;
 }
 
 #description {
