@@ -17,7 +17,7 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: yarn test
-      - run: yarn format
+      - run: yarn format-check
       - run: yarn lint
 
       - run: echo "Deploying to GitHub Pages if on the main branch..."
