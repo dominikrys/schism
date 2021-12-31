@@ -3,7 +3,7 @@ on: [push, pull_request]
 name: Continuous Integration
 
 jobs:
-  run:
+  build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
@@ -21,3 +21,34 @@ jobs:
       - run: yarn test
       - run: yarn format
       - run: yarn lint
+
+      - run: yarn bundle
+        if: contains('refs/heads/main', github.ref)
+
+      - name: Deploy to GitHub Pages
+        if: contains('refs/heads/main', github.ref)
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: web
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # deploy:
+  #   name: Deploy to GitHub Pages
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: contains('refs/heads/main', github.ref)
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: "16"
+
+  #     - run: npm install -g yarn
+  #     - run: yarn
+  #     - run: yarn bundle
+  #     - run: yarn deploy

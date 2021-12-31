@@ -11,6 +11,7 @@
     "@types/marked": "^4.0.1",
     "@types/node": "^16.4.13",
     "copy-to-clipboard": "^3.3.1",
+    "gh-pages": "^3.2.3",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
@@ -36,9 +37,10 @@
     "lint": "yarn run eslint . --max-warnings=0 --ignore-path .lintformatignore",
     "format-check": "yarn prettier . -c --ignore-path .lintformatignore",
     "format": "yarn prettier . -w --ignore-path .lintformatignore",
-    "bundle": "browserify docs/index.ts -p tsify | uglifyjs > docs/bundle.js",
-    "watch": "watchify docs/index.ts -p tsify -o docs/bundle.js --verbose --debug",
-    "serve": "serve ./docs -p 8000",
-    "start": "npm-run-all --parallel watch serve"
+    "bundle": "browserify web/index.ts -p tsify | uglifyjs > web/bundle.js",
+    "watch": "watchify web/index.ts -p tsify -o web/bundle.js --verbose --debug",
+    "serve": "serve ./web -p 8000",
+    "start": "npm-run-all --parallel watch serve",
+    "deploy": "gh-pages --dist web"
   }
 }

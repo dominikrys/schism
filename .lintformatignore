@@ -4,7 +4,7 @@ node_modules
 tsconfig.json
 
 # Auto-generated
-docs/bundle.js
+web/bundle.js
 
 # Other
-docs/index.html
+web/index.html

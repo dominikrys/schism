@@ -56,12 +56,14 @@ yarn upgrade
 
 - `src`: Compiler source code
 - `__tests__`: Compiler tests
-- `docs`: Website source code (JavaScript is generated)
+- `web`: Website source code (`index.js` is generated)
 
 ## TODO
 
-- bundle website + deploy
 - deploy from CI: https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131
+
+  - remove index js from git, note how gh-pages gets deployed
+
 - add images to README + note to check website for language info
 - make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
 - make repo public
