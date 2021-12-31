@@ -1,6 +1,6 @@
 ### General
 dist
-web/index.js
+web/bundle.js
 
 ### macOS ###
 .DS_Store

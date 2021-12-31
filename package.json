@@ -40,7 +40,6 @@
     "bundle": "browserify web/index.ts -p tsify | uglifyjs > web/bundle.js",
     "watch": "watchify web/index.ts -p tsify -o web/bundle.js --verbose --debug",
     "serve": "serve ./web -p 8000",
-    "start": "npm-run-all --parallel watch serve",
-    "deploy": "gh-pages --dist web"
+    "start": "npm-run-all --parallel watch serve"
   }
 }

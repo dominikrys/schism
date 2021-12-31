@@ -46,6 +46,10 @@ yarn bundle
 
 For automated pre-commit/pre-push checks, a [Lefthook](https://github.com/evilmartians/lefthook) script is included. Run `lefthook install` to initialize it.
 
+### Deployment to GitHub Pages
+
+The GitHub Pages website is deployed off the `gh-pages` branch. This is automatically done by CI when code pushed to the `main` branch has been successfully compiled and tested.
+
 ### Upgrading Libraries
 
 ```bash
@@ -60,12 +64,7 @@ yarn upgrade
 
 ## TODO
 
-- deploy from CI: https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131
-
-  - remove index js from git, note how gh-pages gets deployed
-
-- add images to README + note to check website for language info
 - make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
-- make repo public
-- add repo to pinned project
+- add images to README + note to check website for language info
+- make repo public and add to pinned projects
 - get live reload working (without gulp)? nodemon? then blog post?x
