@@ -187,17 +187,17 @@ const descriptionText = `
 
 ###### Compile-To-WebAssembly Language in TypeScript
 
-When the code is run, the code is tokenised and parsed into an Abstract Syntax Tree (AST). When using the interpreter, the AST is executed using JavaScript. When using the compiler, the AST is compiled into a WebAssembly module and executed by the WebAssembly runtime.
+When the code is run, it's first tokenised and parsed into an Abstract Syntax Tree. Then, it's either executed using the JavaScript runtime, or compiled and executed using the WebAssembly runtime.
 
 ##### Language
 
 Please refer to the example code to get started. As a summary of the main language features:
 
-- Print variable value: \`print <variable>\`.
+- Print a variable's value: \`print <variable>\`.
 
-- Assign value to a variable: \`var <name> = <value>\`.
+- Assign a value to a variable: \`var <name> = <value>\`.
 
-- Set pixel in the canvas: \`setpixel (<x>, <y>, <colour>)\`. \`x\` and \`y\` are in the range 1-100 inclusive and \`colour\` is a value in the range 0-255 inclusive (where 0 is black and 255 is white).
+- Set a pixel in the canvas: \`setpixel (<x>, <y>, <colour>)\`. \`x\` and \`y\` are in the range 1-100 inclusive and \`colour\` is a value in the range 0-255 inclusive (where 0 is black and 255 is white).
 
 - While loop: \`while (<condition>) <code> endwhile\`
 
