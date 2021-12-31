@@ -9,27 +9,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "16"
-
-      - name: Set up Yarn
-      - run: |
-          npm install -g yarn
-          yarn
-
+      - run: npm install -g yarn
+      - run: yarn
       - run: yarn build
       - run: yarn test
       - run: yarn format
       - run: yarn lint
 
       - run: echo "Deploying to GitHub Pages if on the main branch..."
-
-      - run: yarn bundle
-        if: contains('refs/heads/main', github.ref)
-
+      - if: contains('refs/heads/main', github.ref)
+        run: yarn bundle
       - name: Deploy to GitHub Pages
         if: contains('refs/heads/main', github.ref)
         uses: crazy-max/ghaction-github-pages@v2
