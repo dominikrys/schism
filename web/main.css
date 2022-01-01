@@ -8,7 +8,8 @@ body {
 }
 
 .output-element-box {
-  background-color: #272822;
+  background-color: #272822 !important;
+  color: #f8f8f2;
   border: 1px solid gray;
   border-radius: 5px;
 }
@@ -41,8 +42,6 @@ canvas {
 #console-output {
   resize: none;
   font-family: monospace;
-  background-color: #272822;
-  color: #f8f8f2;
 }
 
 .navbar-nav .btn {
@@ -72,6 +71,12 @@ canvas {
 
 ::-webkit-scrollbar-thumb {
   background: gray;
+}
+
+.btn:focus {
+  /* the !important is really the key here, it overrides everything else */
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* GitHub Corner Styling */

@@ -126,7 +126,8 @@ const run = async (runtime: Runtime) => {
 
   consoleOutput.value = "";
 
-  runSpinner.hidden = false;
+  // Workaround for showing spinner since 'd-flex' ignores the 'hidden' HTML property
+  runSpinner.classList.add("d-flex");
 
   const sleep = async (ms: number) => {
     await new Promise((resolve) => setTimeout(resolve, ms));
@@ -153,7 +154,7 @@ const run = async (runtime: Runtime) => {
     logMessage((e as ParserError).message);
     markError((e as ParserError).token);
   } finally {
-    runSpinner.hidden = true;
+    runSpinner.classList.remove("d-flex");
   }
 };
 

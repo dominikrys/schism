@@ -9,9 +9,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "yarn run eslint . --max-warnings=0 --ignore-path .lintformatignore",
-    "format-check": "yarn prettier . -c --ignore-path .lintformatignore",
-    "format": "yarn prettier . -w --ignore-path .lintformatignore",
+    "lint": "yarn run eslint . --max-warnings=0 --ignore-path .eslintignore",
+    "format-check": "yarn prettier . -c --ignore-path .eslintignore",
+    "format": "yarn prettier . -w --ignore-path .eslintignore",
     "bundle": "browserify web/index.ts -p tsify | uglifyjs > web/bundle.js",
     "watch": "watchify web/index.ts -p tsify -o web/bundle.js --verbose --debug",
     "serve": "yarn browser-sync web --watch",

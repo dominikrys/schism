@@ -64,6 +64,6 @@ yarn upgrade
 
 ## TODO
 
-- vertically center spinner
+- horizontally center canvas
 - add images to README + note to check website for language info
 - make repo public and add to pinned projects
