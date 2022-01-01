@@ -3,6 +3,7 @@ declare const $: any;
 
 import copy from "copy-to-clipboard";
 import { marked } from "marked";
+import "no-darkreader";
 
 import { runtime as interpreterRuntime } from "../src/interpreter";
 import { runtime as compilerRuntime } from "../src/compiler";

@@ -4017,6 +4017,11 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
+no-darkreader@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/no-darkreader/-/no-darkreader-1.0.1.tgz#dc6d0d07ca32af81fbbe34f812b9e7e6ff13e454"
+  integrity sha512-0sbLTkRFzR/f+X3y8TrXLwlcWQZTM1fK1rlKuP1rlwt+e+jOfCo7KQthDGonrK/EzeOZpFRu9qek8KQ3p03q/g==
+
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
