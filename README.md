@@ -64,7 +64,6 @@ yarn upgrade
 
 ## TODO
 
-- make background darker and boxes the same colour
 - make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
 - add images to README + note to check website for language info
 - make repo public and add to pinned projects

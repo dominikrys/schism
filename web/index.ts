@@ -187,7 +187,7 @@ const descriptionText = `
 
 ###### Compile-To-WebAssembly Language in TypeScript
 
-When the code is run, it's first tokenised and parsed into an Abstract Syntax Tree. Then, it's either executed using the JavaScript runtime, or compiled and executed using the WebAssembly runtime.
+When the code is run, it's first tokenised and parsed into an Abstract Syntax Tree. Then, it's either executed using the JavaScript runtime or compiled and executed using the WebAssembly runtime.
 
 ##### Language
 

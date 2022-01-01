@@ -3,23 +3,55 @@
 }
 
 body {
-  background: #272822;
+  background: #1b1b17;
   color: #f8f8f2;
+}
+
+.output-element-box {
+  background-color: #272822;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.output-element {
+  margin-top: 10px;
+}
+
+.CodeMirror,
+textarea {
+  font-size: 14px;
+}
+
+.CodeMirror {
+  height: 500px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.error {
+  border-color: red;
+  border-style: dotted;
+  border-width: 2px;
 }
 
 canvas {
   display: block;
-  background: #1b1b17;
+}
+
+#console-output {
+  resize: none;
+  font-family: monospace;
+  background-color: #272822;
+  color: #f8f8f2;
 }
 
 .navbar-nav .btn {
   margin-right: 10px;
 }
 
-.output-element-box {
-  background-color: #1b1b17;
-  border: 1px solid gray;
-  border-radius: 5px;
+#description {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .modal-content {
@@ -32,34 +64,6 @@ canvas {
 
 .close span {
   color: #f8f8f2;
-}
-
-.CodeMirror,
-textarea {
-  height: 500px;
-  font-size: 14px;
-}
-
-.error {
-  border-color: red;
-  border-style: dotted;
-  border-width: 2px;
-}
-
-#console-output {
-  resize: none;
-  font-family: monospace;
-  background-color: #1b1b17;
-  color: #f8f8f2;
-}
-
-#description {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.output-element {
-  margin-top: 10px;
 }
 
 ::-webkit-scrollbar {
