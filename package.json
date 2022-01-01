@@ -1,36 +1,11 @@
 {
   "name": "schism",
   "version": "1.0.0",
-  "description": "WebAssembly Compiler in TypeScript",
-  "main": "src/app.ts",
+  "description": "Compile-To-WebAssembly Language in TypeScript",
   "repository": "git@github.com:dominikrys/schism.git",
-  "author": "Dominik Rys",
   "license": "MIT",
-  "dependencies": {
-    "@thi.ng/leb128": "^1.0.64",
-    "@types/marked": "^4.0.1",
-    "@types/node": "^16.4.13",
-    "copy-to-clipboard": "^3.3.1",
-    "gh-pages": "^3.2.3",
-    "typescript": "^4.3.5"
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@typescript-eslint/parser": "^4.29.0",
-    "browserify": "^17.0.0",
-    "eslint": "^7.32.0",
-    "jest": "^27.0.6",
-    "marked": "^4.0.8",
-    "opener": "^1.5.2",
-    "prettier": "^2.3.2",
-    "serve": "^13.0.2",
-    "ts-jest": "^27.0.4",
-    "tsify": "^5.0.4",
-    "uglify-js": "^3.14.1",
-    "watchify": "^4.0.0",
-    "yarn-run-all": "^3.1.1"
-  },
+  "author": "Dominik Rys",
+  "main": "web/index.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -39,7 +14,31 @@
     "format": "yarn prettier . -w --ignore-path .lintformatignore",
     "bundle": "browserify web/index.ts -p tsify | uglifyjs > web/bundle.js",
     "watch": "watchify web/index.ts -p tsify -o web/bundle.js --verbose --debug",
-    "serve": "serve ./web -p 8000",
+    "serve": "yarn browser-sync web --watch",
     "start": "npm-run-all --parallel watch serve"
+  },
+  "dependencies": {
+    "@thi.ng/leb128": "^1.0.64",
+    "copy-to-clipboard": "^3.3.1",
+    "marked": "^4.0.8",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/marked": "^4.0.1",
+    "@types/node": "^16.4.13",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "browser-sync": "^2.27.7",
+    "browserify": "^17.0.0",
+    "eslint": "^7.32.0",
+    "gh-pages": "^3.2.3",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.4",
+    "tsify": "^5.0.4",
+    "uglify-js": "^3.14.1",
+    "watchify": "^4.0.0",
+    "yarn-run-all": "^3.1.1"
   }
 }

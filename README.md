@@ -30,7 +30,7 @@ Run compiler tests:
 yarn test
 ```
 
-Host the website locally and watch for changes:
+Host the website locally and watch for changes (with live reload):
 
 ```bash
 yarn start
@@ -60,11 +60,11 @@ yarn upgrade
 
 - `src`: Compiler source code
 - `__tests__`: Compiler tests
-- `web`: Website source code (`index.js` is generated)
+- `web`: Website source code
 
 ## TODO
 
+- make background darker and boxes the same colour
 - make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
 - add images to README + note to check website for language info
 - make repo public and add to pinned projects
-- get live reload working (without gulp)? nodemon? then blog post?x

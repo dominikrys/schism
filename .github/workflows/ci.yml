@@ -20,7 +20,6 @@ jobs:
       - run: yarn format-check
       - run: yarn lint
 
-      - run: echo "Deploying to GitHub Pages if on the main branch..."
       - if: contains('refs/heads/main', github.ref)
         run: yarn bundle
       - name: Deploy to GitHub Pages
