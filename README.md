@@ -5,13 +5,17 @@
 
 Simple programming language that compiles to WebAssembly, written in TypeScript.
 
-[**Try it out online!**](http://dominikrys.com/schism/)
+[**Try it here!**](http://dominikrys.com/schism/)
 
-Based off Colin Eberhardt's [blog post on writing a WebAssembly compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html), rewritten using up-to-date versions of TypeScript and Node.
+![Website Screenshot](docs/screenshot.png)
+
+## Background
+
+Based off Colin Eberhardt's [blog post on writing a WebAssembly compiler](https://blog.scottlogic.com/2019/05/17/webassembly-compiler.html), written using up-to-date versions of TypeScript and Node. Information about the language is provided in the language playground linked above.
 
 The aim of this project was to learn about compilers, TypeScript, and front-end development.
 
-## Pre-requisites
+## Building Pre-Requisites
 
 - [Node.js](https://nodejs.org/en/)
 - [yarn](https://classic.yarnpkg.com/en/docs/install/)
@@ -61,7 +65,3 @@ yarn upgrade
 - `src`: Compiler source code
 - `__tests__`: Compiler tests
 - `web`: Website source code
-
-## TODO
-
-- add images to README + note to check website for language info

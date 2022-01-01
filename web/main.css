@@ -10,7 +10,7 @@ body {
 .output-element-box {
   background-color: #272822 !important;
   color: #f8f8f2;
-  border: 1px solid gray;
+  border: 1px solid #4d4d4d;
   border-radius: 5px;
   margin-top: 4px;
 }
@@ -26,7 +26,7 @@ textarea {
 
 .CodeMirror {
   height: 500px;
-  border: 1px solid gray;
+  border: 1px solid #4d4d4d;
   border-radius: 5px;
   margin-top: 4px;
 }
@@ -51,6 +51,14 @@ canvas {
 #console-output {
   resize: none;
   font-family: monospace;
+  color: #f8f8f2;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#console-output:focus {
+  border: 1px solid #4d4d4d;
 }
 
 .navbar-nav .btn {
