@@ -54,7 +54,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-8">
                 <div class="output-element">
@@ -102,25 +102,27 @@ endwhile
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-sm justify-content-between">
-        <ul class="navbar-nav mr-auto">
-            <button id="interpret" class="btn btn-primary">
-                Run JS Interpreter
-            </button>
-            <button id="compile" class="btn btn-primary">
-                Compile WASM and Run
-            </button>
-            <div id="run-spinner" hidden>
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Loading...</span>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <button id="interpret" class="btn btn-primary">
+                    Run JS Interpreter
+                </button>
+                <button id="compile" class="btn btn-primary">
+                    Compile WASM and Run
+                </button>
+                <div id="run-spinner" hidden>
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                 </div>
-            </div>
-        </ul>
-        <form class="form-inline">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#shareModal">
-                Share
-            </button>
-        </form>
+            </ul>
+            <form class="form-inline">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#shareModal">
+                    Share
+                </button>
+            </form>
+        </div>
     </nav>
 
     <div class="container">

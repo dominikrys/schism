@@ -64,6 +64,6 @@ yarn upgrade
 
 ## TODO
 
-- make sure the website looks fine on mobile (don't make the container fluid?) make the description and columns fill up the same horizontal space
+- vertically center spinner
 - add images to README + note to check website for language info
 - make repo public and add to pinned projects
