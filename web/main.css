@@ -12,10 +12,11 @@ body {
   color: #f8f8f2;
   border: 1px solid gray;
   border-radius: 5px;
+  margin-top: 4px;
 }
 
 .output-element {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .CodeMirror,
@@ -27,12 +28,18 @@ textarea {
   height: 500px;
   border: 1px solid gray;
   border-radius: 5px;
+  margin-top: 4px;
 }
 
 .error {
   border-color: red;
   border-style: dotted;
   border-width: 2px;
+}
+
+#canvas-title {
+  display: block;
+  text-align: center;
 }
 
 canvas {
@@ -48,6 +55,11 @@ canvas {
 
 .navbar-nav .btn {
   margin-right: 10px;
+}
+
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 #description {
@@ -73,12 +85,6 @@ canvas {
 
 ::-webkit-scrollbar-thumb {
   background: gray;
-}
-
-.btn:focus {
-  /* the !important is really the key here, it overrides everything else */
-  outline: none !important;
-  box-shadow: none !important;
 }
 
 /* GitHub Corner Styling */

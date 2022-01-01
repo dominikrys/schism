@@ -65,4 +65,3 @@ yarn upgrade
 ## TODO
 
 - add images to README + note to check website for language info
-- make repo public and add to pinned projects
